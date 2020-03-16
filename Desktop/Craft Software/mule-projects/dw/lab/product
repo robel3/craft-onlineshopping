@@ -1,0 +1,9 @@
+form: FLATFILE
+id: 'RQH'
+tag: '1'
+name: Request Header Record
+values:
+- { name: 'Tomato', type: String, length: 10 }
+- { name: 'Onion', type: Date, length: 8 }
+- { name: 'Potato', type: Time, length: 4 }
+

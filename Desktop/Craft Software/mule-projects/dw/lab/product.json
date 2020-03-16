@@ -1,0 +1,10 @@
+      [ 
+                {"id": 1, "barCodeId": "ABC-abc-0001", "name": "Tomato", "productCategory": "A", "rate": 20},
+                { "id": 2, "barCodeId": "ABC-abc-0002", "name": "Onion", "productCategory": "B", "rate": 30 },
+                { "id": 3, "barCodeId": "ABC-abc-0003", "name": "Potato", "productCategory": "C", "rate": 40 },
+                { "id": 4, "barCodeId": "ABC-abc-0004", "name": "Bread", "productCategory": "A", "rate": 50 }, 
+                
+        ]
+
+
+

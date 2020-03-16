@@ -1,0 +1,5 @@
+id,barCodeId,name,productCategory,rate
+1,ABC-abc-0001,Tomato,A,20
+2,ABC-abc-0002,Onion,B,30
+3,ABC-abc-0003,Potato,C,40
+4,ABC-abc-0004,Bread,A,50

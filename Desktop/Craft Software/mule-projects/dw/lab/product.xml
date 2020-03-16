@@ -1,0 +1,30 @@
+<productList>
+    <product>
+        <id>1</id>
+        <barCodeId>ABC-abc-0001</barCodeId>
+        <name>Tomato</name>
+        <productCategory>A</productCategory>
+        <rate>20</rate>
+    </product>
+    <product>
+        <id>2</id>
+        <barCodeId>ABC-abc-0002</barCodeId>
+        <name>Onion</name>
+        <productCategory>B</productCategory>
+        <rate>30</rate>
+    </product>
+    <product>
+        <id>3</id>
+        <barCodeId>ABC-abc-0003</barCodeId>
+        <name>Potato</name>
+        <productCategory>C</productCategory>
+        <rate>40</rate>
+    </product>
+    <product>
+        <id>4</id>
+        <barCodeId>ABC-abc-0004</barCodeId>
+        <name>Bread</name>
+        <productCategory>A</productCategory>
+        <rate>50</rate>
+    </product>
+</productList>

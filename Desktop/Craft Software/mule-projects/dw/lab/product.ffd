@@ -1,0 +1,11 @@
+form: FLATFILE
+name: 'flatFile'
+segments:
+- id: 'Products'
+  tag: '1'
+  name: Product Collection
+  values:
+  - { name: 'barCodeId', type: String, length: 32 }
+  - { name: 'name', type: String, length: 32 }
+  - { name: 'productCategory', type: Integer, length: 15 }
+  - { name: 'rate', type: Integer, length: 5 }
