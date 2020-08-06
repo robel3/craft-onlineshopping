@@ -1,0 +1,136 @@
+%RAML 1.0
+title: craft--online--shopping
+types:
+  users: !include datatypes/user.raml
+traits:
+  responsemessage: !include traits/responses.raml
+  message: !include traits/responses2.raml
+documentation:
+  - !include documentation.raml  
+securitySchemes:
+ oath: !include securityScheme.raml
+/users: 
+  description: get all users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/user.json
+              
+  is: [responsemessage]
+  post:
+    description: creates user
+    responses:
+        
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "uid": 111
+              }          
+    is: [message]
+       
+
+
+  /{userid}:
+    description: get user by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/usersid.json
+               
+    is: [responsemessage]    
+
+                 
+
+    
+/products:
+  description: get all products
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/products.json
+  is: [responsemessage]  
+  /{productid}:
+    get:
+      description: get single product
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/productsid.json
+               
+    is: [responsemessage]    
+/orders:
+  get:
+    description: get all orders
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/orders.json
+    is: [responsemessage]         
+      
+  post:
+    description: creates order
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "addressid": 3589068800000,
+                "amount": 2000,
+                "created": 4589068800000,
+                "discountid": 000,
+                "modified": 1589068800000,
+                "orderid": 100,
+                "status": ok,
+                "userid": 1000
+              }        
+    is: [message]        
+  /{orderid}:
+    get:
+      description: get orders by userid
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/orderid.json
+                
+    is: [responsemessage]   
+  /{userid}:
+    get:
+      description: get orders by userid
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/userid.json
+    is: [responsemessage]    
+/categories:
+  get:
+    description: find all categories
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/category.json
+             
+    is: [responsemessage]
+  /{categoryid}:
+    get:
+      description: find category
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/categoryid.json
+               
+      is: [responsemessage]
