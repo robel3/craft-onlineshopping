@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ce696ba2-c0a6-4c0d-9b79-5c211d797663" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<jms:config name="JMS_Config" doc:name="JMS Config" doc:id="66cfed9e-bb2f-4391-bdb2-ff2633502deb" >
+		<jms:active-mq-connection >
+			<jms:factory-configuration brokerUrl="tcp://localhost:61616" />
+		</jms:active-mq-connection>
+	</jms:config>
+	<flow name="jms1Flow3" doc:id="5cb65514-4ac0-49ed-812a-b8c924a06a98" >
+		<http:listener doc:name="Listener" doc:id="c3f5d44d-a85e-4e16-94cb-1f9df4efe037" config-ref="HTTP_Listener_config" path="/send"/>
+		<jms:publish doc:name="Publish" doc:id="5f0ce9a9-f7f8-436e-abd1-d634bbc23df3" config-ref="JMS_Config" destination="inputQue">
+		</jms:publish>
+	</flow>
+	<flow name="jms1Flow2" doc:id="5acd65d8-f5d6-47ac-89bf-d69f07a7329f" >
+		<http:listener doc:name="Listener" doc:id="c3fc233a-3248-4459-954c-83f1b239da81" config-ref="HTTP_Listener_config" path="/pub"/>
+		<jms:publish-consume doc:name="Publish consume" doc:id="6b0b0f69-e5da-4fa3-9a18-6bbb5667d49e" config-ref="JMS_Config" destination="inputQ">
+			<jms:message >
+				<jms:reply-to destination="outputQ" />
+			</jms:message>
+			<jms:consume-configuration maximumWaitUnit="MINUTES" />
+		</jms:publish-consume>
+	</flow>
+</mule>
