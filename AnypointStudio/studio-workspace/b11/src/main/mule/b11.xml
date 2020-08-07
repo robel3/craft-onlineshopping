@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="bc92306e-d0d3-4d7c-909e-d45074d5aa89" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="b11Flow" doc:id="6372cb83-5b9c-418a-9ad9-248ef6493469" >
+		<http:listener doc:name="Listener" doc:id="90bdc4d4-2b4e-4e11-86dd-34f28574146e" config-ref="HTTP_Listener_config1" path="/demo"/>
+		<set-payload value="hi b11" doc:name="Set Payload" doc:id="62b49734-b6e2-42df-902f-cdea06caf45b" />
+		<logger level="INFO" doc:name="Logger" doc:id="de21d8ca-543a-4871-ab41-6cbf69e6e538" message="#[payload]"/>
+	</flow>
+	<flow name="HelloWorldFlow" doc:id="0f9527f0-ee3c-48a6-b894-98f6aa8918c7" >
+		<http:listener doc:name="HttpListner" doc:id="2fa16874-c01e-45ac-a054-f9aae41600c6" config-ref="HTTP_Listener_config1" path="/path"/>
+		<set-payload doc:name="SetPayload" doc:id="e6bc7733-4cb1-48cd-a1e6-697209e06025" value="Hello B11"/>
+		<set-variable value='#[attributes.queryParams.location]' doc:name="Set Variable" doc:id="fc218037-1147-4c1b-a043-bbf28bde7011" variableName="myvar"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e4f96bda-526e-42c3-ba5f-0ae1ff5388be" message='the name which passed as a queryparm is = #[vars.myVar]'/>
+	</flow>
+	
+</mule>
