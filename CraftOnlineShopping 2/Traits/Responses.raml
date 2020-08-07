@@ -1,0 +1,23 @@
+#%RAML 1.0 Trait
+responses:
+  404:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Sorry,Page Not Found"
+              }
+  403:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Forbidden"
+              }
+  401:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Unauthorized Person"
+              }
