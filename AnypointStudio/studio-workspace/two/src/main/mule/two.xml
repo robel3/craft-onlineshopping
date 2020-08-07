@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="twoFlow" doc:id="ff056a99-7e17-4370-b64a-f944af017132" >
+		<http:listener doc:name="Listener" doc:id="f6a14826-9099-4e06-874b-6547531ab407" path="/one" config-ref="HTTP_Listener_config"/>
+		<set-payload value="the sec domain project" doc:name="Set Payload" doc:id="d84b98ee-9b50-4670-ae24-4e7dfc331d0c" />
+		<logger level="INFO" doc:name="Logger" doc:id="b0a76bee-f149-458d-9685-5c265bd63a85" message="#[payload]"/>
+	</flow>
+</mule>
