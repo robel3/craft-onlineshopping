@@ -1,0 +1,149 @@
+#%RAML 1.0
+title: online shoppiing
+version: 1.0
+resourceTypes:
+  collection: !include resource/rootResource.raml
+securitySchemes:
+  security:  !include  secureschema/securityScheme.raml
+securedBy: security
+uses:
+  lib: library.raml
+/Cataogories:
+  description: find all catagories
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.catagory[]
+            example:
+              !include  examples/catagory.json
+  
+    
+    is: 
+    - lib.respomessage:
+  /{Catagoryid}:
+    description: find catagories by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+           
+              type: lib.catagoryid
+              example: !include examples/catagoryid.json
+      is: 
+      - lib.respomessage        
+/Orders:
+  description:  get all orders
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              !include examples/order.json
+    is: 
+    - lib.respomessage
+  post:
+    description: create order
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              !include examples/orderid.json
+      201:
+        body:
+          application/json:
+            example: Created
+                
+
+  /{Orderid}:
+    description: get order by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.orderid
+              example:
+                !include examples/orderid.json
+      is: 
+      - lib.respomessage     
+  /{Orderuid}:
+    description: get order by uid
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.orderuid
+              example:
+                !include examples/orderuid.json
+      is: 
+      - lib.respomessage                   
+/Product:
+  description: get all product
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.product[]
+            example: !include examples/product.json
+
+    is: 
+    - lib.respomessage 
+
+  /{productid}:
+    description: get product by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.productid
+              example: !include examples/productid.json
+
+      is: 
+      - lib.respomessage 
+
+/users:
+  description: get all users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.user[]
+            example: !include examples/users.json
+    is: 
+    - lib.respomessage
+    
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.userid
+            example:  !include examples/userid.json
+              
+      201:
+        body:
+          application/json:
+            example: !include examples/created.json
+                
+  /{userid}: 
+   
+   description: get user by id
+   get:
+     responses:
+       200:
+         body:
+           application/json:
+             type: lib.userid
+             example: !include examples/userid.json
+               
+     is: 
+     - lib.respomessage          
