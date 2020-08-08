@@ -1,0 +1,213 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/10a36fc4-db64-4614-8cf4-1a2721703ec7/ # 
+title: craft online shopping main#%RAML 1.0
+version: 1.0
+mediaType:
+- application/json
+
+
+uses:
+  mylib: library.raml
+  
+  
+/users:
+ description: this is the users resource
+ get:
+   queryParameters:
+     id:
+       description: id
+       type: integer
+       required: false
+     full name:  
+      description: fname and lname
+      type: string
+      enum:
+        [jhone,mike]
+      required: false
+      default: jhone
+     user name:
+       description: user name
+       maxLength: 10
+       minLength: 2
+       required: false
+       default: jhone
+     address:
+   description: users resource get http status code responce
+   
+   responses:
+     200:
+        body:
+            application/json:
+               
+               example: !include example/users.raml
+#  type:
+#   collections:
+#     resourcePath: users
+                           
+ is: 
+  mylib.responsemassage:
+  /{userid}:               
+   description: this is the users resource
+   get:
+    description: users resource get http status code responce
+    responses:
+     200:
+        body:
+            application/json:
+               
+               example: !include example/users.raml
+              
+ post:
+  responses:
+    200:
+      body:
+        application/json:
+          example:
+            {
+              "uid":123
+            }
+    
+  is: 
+   mylib.responsemassage:
+/products:
+ description: this is the products resource  
+ get:
+   description: products resource get http status code responce
+   responses:
+     200:
+        body:
+            application/json:
+                example: !include products/product.json
+                 
+   is: 
+    mylib.responsemassage:   
+    
+/orders:
+ description: this is the orders resource
+ get:
+   description: orders resource get http status code responce
+   responses:
+     200:
+        body:
+            application/json:
+                example:
+                  [
+                     { "orderid": 123,
+               "userid": 1036,
+               "addressid": 201,
+               "discountid": 1,
+               "created": 1590532592000,
+               "modified": null,
+               "status": "Accepted",
+               "amount": 1000
+               },
+                  {"orderid": 124,
+               "userid": 1038,
+               "addressid": 201,
+               "discountid": 1,
+               "created": 1590560112000,
+               "modified": null,
+               "status": "Awaiting payment",
+               "amount": 1000
+                  }
+                  ]
+  
+ is: 
+  mylib.responsemassage:
+ /orders/{id}:               
+   description: this is the orders id resource
+   get:
+    description: orders resource get http status code responce
+    responses:
+     200:
+        body:
+            application/json:
+                example:
+                  {
+              "orderid": 123,
+               "userid": 1036,
+               "addressid": 201,
+               "discountid": 1,
+               "created": 1590532592000,
+               "modified": null,
+               "status": "Accepted",
+               "amount": 1000
+
+                  }   
+                     
+     404:
+      body:
+        application/json:
+          example:
+            {
+              "message": "sorry not found"
+            }
+    
+   post:
+          
+    responses:
+     200:
+      body:
+        application/json:
+          example:
+            {
+              "orderid":10
+            }
+    is: 
+     mylib.responsemassage:
+   /orders/{uid}:
+    get:
+      description: 
+      responses:
+       "200":
+          body:
+            application/json:
+              example:
+                {
+               "orderid": 123,
+               "userid": 1036,
+               "addressid": 201,
+               "discountid": 1,
+               "created": 1590532592000,
+               "modified": null,
+               "status": "Accepted",
+               "amount": 1000
+                }
+      is: 
+       mylib.responsemassage:
+/catagories:
+  get:
+   description: categories resource get http status code responce
+   responses:
+     200:
+        body:
+            application/json:
+                example:
+                 [
+       {
+      "categoryid": 10,
+      "name": "labtop"
+   },
+      {
+      "categoryid": 11,
+      "name": "laptops"
+   },
+ ] 
+  is: 
+   mylib.responsemassage:
+                                      
+  /{categoryid}:               
+   description: this is the category id resource
+   get:
+    description: category resource get http status code responce
+    responses:
+     200:
+        body:
+            application/json:
+                example:
+                  {
+                     "categoryid": 10,
+                     "name": "labtop"
+                  }
+    is: 
+     mylib.responsemassage:

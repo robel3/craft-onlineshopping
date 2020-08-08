@@ -1,0 +1,32 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 2.0
+description:  this is api sppoprt OAuth Security
+describedBy:
+  headers:
+    Authorization: 
+     description: user have to send token to accece any resource
+     type: string
+  queryParameters:
+    acess_token:
+      description: user has to send valid token to qury parametr
+      type: string
+  responses:
+    401:
+      body:
+        application/json:
+          example:
+            {
+              message: bad or expaired token is used
+            }
+    403:
+      description: not allowed to acess the resource
+              
+
+        
+           
+  
+  
+
+
+
+
