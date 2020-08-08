@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+usage: To define basic lib which are used on the craft online shopping rest api raml specification.
+types:
+  users:  !include Datatype/user.raml
+  catagories: !include Datatype/dataType-cat.raml
+  orders: !include Datatype/dataType-ord.raml
+  products: !include Datatype/dataType-pr.raml
+traits: 
+   respomessege: !include traits/responses.raml
+securitySchemes:   
+  OAuth: !include Craft-SecurityScheme.raml  
+annotationTypes:
+  annotation: !include craft-onlineshopping-annotation.raml  
+# documentation:  !include documentation.raml  

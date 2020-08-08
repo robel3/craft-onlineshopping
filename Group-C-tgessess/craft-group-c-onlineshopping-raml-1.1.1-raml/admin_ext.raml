@@ -1,0 +1,50 @@
+#%RAML 1.0 Extension
+extends: craft-group-c-onlineshopping-raml.raml
+resourceTypes:
+  collection1: !include resource/admin-traitget_resourceType.raml
+  collection2: !include resource/admin-traitpost-resourceType.raml
+  collection3: !include resource/admin-traitput-resourceType.raml 
+  collection4: !include resource/admin-traitdelete-resourceType.raml
+  
+/adminsorders: 
+   type:
+     collection1:
+        resourcePathName: orders
+        resourcePath: orders                      
+   
+     collection2:
+       resourcePathName: orders
+       resourcePath: orders  
+     collection3:
+       resourcePathName: orders
+       resourcePath: orders 
+     collection4:
+       resourcePathName: orders
+       resourcePath: orders         
+
+/adminproducts: 
+    type:
+      collection1:
+        resourcePathName: products
+        resourcePath: products                  
+   
+      collection2:
+        resourcePathName: products
+        resourcePath: products
+      collection3:
+        resourcePathName: products
+        resourcePath: products
+      collection4:
+        resourcePathName: products
+        resourcePath: products      
+             
+        
+/adminusers:
+    type:
+      collection1:
+        resourcePathName: users
+        resourcePath: users      
+      collection4:
+        resourcePathName: users
+        resourcePath: users
+

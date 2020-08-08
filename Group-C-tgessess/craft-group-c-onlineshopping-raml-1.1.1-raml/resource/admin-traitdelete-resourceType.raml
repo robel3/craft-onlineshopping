@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+description: the resource <<resourcePathName>> is deleted from the record successfully
+
+delete:
+    description: delete an existing record in the list
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                messege: "<<resourcePath>> is deleted from the record successfully"
+              }  

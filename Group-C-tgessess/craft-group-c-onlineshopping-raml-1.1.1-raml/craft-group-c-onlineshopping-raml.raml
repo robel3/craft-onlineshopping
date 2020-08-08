@@ -1,0 +1,166 @@
+#%RAML 1.0
+title: Craft-Group-C-Onlineshopping Raml
+version: 1.0
+uses:
+  lib: craft-shop-library.raml
+mediaType:
+  application/json
+/categories:
+  get:
+    queryParameters:
+      id:
+        description: id
+        type: integer
+        required: true
+      fullname: 
+        description: First Name and Last Name
+        type: string 
+        enum:
+          [john, peter]  
+        required: false
+      usersname:
+        description: usersname
+        maxLength: 10
+        minLength: 2
+        required: false
+        default: John
+     
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/catagories.json   
+
+    is: lib.respomessege       
+    
+
+/(catagoryid):
+   get:
+    responses: 
+     200:
+       body:
+        application/json:
+          example: !include examples/catagories.json
+            
+    is: lib.respomessege  
+/Orders:
+  get:
+    responses:
+     200:
+       body:
+        application/json:
+          example: !include examples/orders.json
+                 
+    is: lib.respomessege  
+
+                    
+        
+  /(Orderid):                                                                                                                                                                   
+
+    get:
+      queryParameters:
+        OrderUid:
+          required: true
+          type: integer
+      responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/orderID.json
+                  
+    is: lib.respomessege     
+    post:
+     responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/orderID-post.json
+              
+      201:
+       body:
+        application/json:
+          examples:
+            {
+              "message":"created"
+            } 
+     is: lib.respomessege 
+  /products:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/products.json
+              
+    is:  lib.respomessege
+  /{productsid}:
+    get:
+      queryParameters:
+        productid:
+          required: true
+          type: integer
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/prodictID.json
+                
+                   
+      is: lib.respomessege 
+/users:
+  
+    
+  get:
+    responses:
+      200:  
+       body:
+          application/json:
+            type: lib.users[]
+            example: !include examples/users.json
+              
+              
+    is: lib.respomessege  
+  post: 
+   responses:
+    200:
+      body:
+        application/json:
+          example:
+            !include examples/users200.json
+    201:
+      body:
+        application/json:
+          example:
+            !include examples/users-201.json
+          
+  is: lib.respomessege  
+          
+/(userid):
+  get:
+    queryParameters:
+     userid:
+       required: true
+       type: integer    
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/users200.json
+              
+               
+              
+    is: lib.respomessege  
+  post:
+    responses:
+     200:  
+      body:
+        application/json:
+          example: !include examples/users200.json
+                       
+     201:
+       body:
+        application/json:
+          example:  !include examples/users-201.json
+           
+    is: lib.respomessege   
+     
