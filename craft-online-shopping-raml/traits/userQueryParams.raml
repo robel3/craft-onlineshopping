@@ -1,0 +1,25 @@
+#%RAML 1.0 Trait
+queryParameters:
+      userid:
+        description: id
+        type: integer
+        required: false
+      email:
+        description: user email address
+        type: string
+        required: false    
+      Name:
+        description: user full name
+        type: string
+        enum:
+          [Jurgen, Klopp]
+        required: false  
+      username:
+        description: username
+        maxLength: 10
+        minLength: 2
+        required: false
+        default: Mezmur
+      address:
+        type: string
+        required: false   

@@ -1,0 +1,174 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/093ea7b1-4666-4b89-bca2-b33c747123ad/ # 
+title: craft-online-shopping
+version: 1.0
+documentation: 
+ - !include documentation.raml 
+mediaType: 
+ - application/json
+uses:
+  myLib: library.raml   
+/users:
+  description: get all users
+  get:
+    is: 
+      - myLib.userQueryParams:
+      - myLib.responseMessages:  
+    responses:
+      200:
+        body:
+              application/json:
+                type: myLib.users[]
+                example: !include examples/users.raml
+  type:
+    myLib.collection:
+      resourcePath: user            
+      
+  post:
+    description: creates user
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.users[]
+            example: !include examples/users.raml
+    is: 
+    - myLib.responseMessages:
+    - myLib.createdResponse:  
+
+/{userid}:
+    description: get a single user
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:  !include examples/user.json
+    type:
+      myLib.collection:
+       resourcePath: user            
+    is: 
+    - myLib.responseMessages:
+    - myLib.userQueryParams:  
+              
+/products:
+  description: get all products
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.products[]
+            example: !include examples/products.json
+             
+    is: 
+    - myLib.responseMessages:
+    - myLib.userQueryParams:
+  type:
+    myLib.collection:
+      resourcePath: products       
+              
+  /{productid}:
+    get:
+      description: get single product
+      responses:
+        200:
+          body:
+            application/json:
+              type: myLib.products[]
+              example: !include examples/product.json
+                
+      is: 
+      - myLib.responseMessages:
+      - myLib.userQueryParams:  
+                
+/orders:
+  get:
+    description: get all orders
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.order[]
+            example: !include examples/orders.json
+              
+    is: 
+    - myLib.responseMessages:
+    - myLib.orderQueryParams:
+  type:
+    myLib.collection:
+      resourcePath: orders    
+                
+  post:
+    description: creates order
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.order[]
+            example: !include examples/orders.json
+     
+    is: 
+    - myLib.responseMessages:
+    - myLib.createdResponse:  
+                                           
+  /{orderid}:
+    get:
+      description: get orders by userid
+      responses:
+        200:
+          body:
+            application/json:
+              type: myLib.order[]
+              example: !include examples/order.json
+                
+      is: 
+      - myLib.responseMessages:
+      - myLib.orderQueryParams:  
+                  
+  /{userid}:
+    get:
+      description: get orders by userid
+      responses:
+        200:
+          body:
+            application/json:
+              type: myLib.users[]
+              example: !include examples/users.raml
+                
+      is: 
+      - myLib.responseMessages:
+      - myLib.userQueryParams:  
+                
+/categories:
+  get:
+    description: find all categories
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.category[]
+            example: !include examples/categories.json
+             
+    is: 
+    - myLib.responseMessages:
+    - myLib.categoryQueryParams:
+  type:
+    myLib.collection:
+      resourcePath: categories    
+               
+  /{categoryid}:
+    get:
+      description: find category
+      responses:
+        200:
+          body:
+            application/json:
+              type: myLib.category[]
+              example: !include examples/categories.json
+                
+      is: 
+      - myLib.responseMessages:
+      - myLib.categoryQueryParams:  
+               
+      
