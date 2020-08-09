@@ -1,0 +1,170 @@
+#%RAML 1.0
+title: Online-Shopping
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/a335206c-fe49-4a4c-9c06-273cb69d3cbe/ # baseUri: 
+version: 1.0
+types:
+  products: !include /types/products.raml
+  category: !include types/category.raml
+/category:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: category
+            example: !include/examples/category.raml                                                                                     
+/orders:
+  post:
+    body:
+      application/json:
+        example:
+          {
+  "products": [
+    {
+      "productId": 0,
+      "quantity": 0
+    }
+  ],
+  "uid": 0
+}
+    responses:
+      200:
+       body:
+         application/json:         
+/products:
+  get:
+    responses:
+      200:
+       body:
+         application/json:
+           type: products
+           example: !include/examples/products.raml
+      404:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Not Found"
+              }
+      401:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Unauthorized"
+              }
+      403:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Forbidden"
+              }
+/{productId}:
+   get:
+     responses:
+       200:
+         body:
+          application/json:
+            example:
+              {
+  "productid": 10,
+  "categoryid": 12,
+  "name": "LENOVO PC",
+  "description": "CORE I 5",
+  "video_url": "WWW.LENOVO.COM",
+  "price": 1200
+                }
+       401:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Unauthorized"
+              }
+       403:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Forbidden"
+              }
+       404:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Not Found"
+              }
+/users:
+  post:
+    body:
+      application/json:
+        example:
+          {
+            email: "ase123@gmail.com",
+            username: "ase123"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                uid: 1234
+              }
+      201:
+        body:
+          application/json:
+            example:
+              {
+              "message": created
+              }
+      401:
+        body:
+          application/json:
+            example:
+              {
+            "message": unauthorized
+              }
+      403:
+        body:
+          application/json:
+            example:
+              {
+                "message": forbidden
+              }
+      404:
+        body:
+          application/json:
+            example:
+              {
+              "message": not found
+              }
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include/examples/users.raml
+  /{userId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+    "userid": 900,
+    "email": "faye@hotmail.com",
+  }
+                
+            
+              
+                                                                                                                                           
+            
+            
+                                            
+
+
+  
