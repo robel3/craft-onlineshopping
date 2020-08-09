@@ -1,0 +1,185 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/f29a1bc3-cad4-4344-94b1-59afdbaf5cac/ # 
+title: craft-online-shopping
+version: 1.0
+mediaType: 
+- application/json
+protocols:
+  - http
+
+# types:
+#   mylib.documentation:
+#   - !include documentation.raml
+uses:
+  mylib: library.raml
+
+/users:
+  get:
+    queryParameters:
+      id: 
+       description: usersid
+       type: integer
+       required: false
+      fullname:
+        description: Fname and Lname
+        type: string
+        required: false
+        enum:
+           [Dani, Paul]
+      username:
+        description: userName
+        maxLength: 12
+        minLength: 4
+        required: false
+        default: Mike
+      address:
+          description: country and state
+          type: string
+          required: false
+          enum:
+            [USA,Maryland]
+    description: this is users status code
+    responses:
+      200: 
+        body:
+          application/json:
+            type: mylib.user
+            example: !include Examples/user.json
+  type:
+     mylib.collections:
+      resourcePathName: users       
+      resourcePath: users
+
+  is: mylib.respoMessage
+    
+  post:
+    description: This is code to generate user Id
+    responses:
+      200: 
+        body:
+          application/json:
+            example:
+             {
+               "user id": "1409"
+             }      
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "created"
+             }
+    is: mylib.respoMessage 
+  /user/{Id}:
+    get:
+     description: This is users status code by user id
+     responses:
+      200: 
+       body:
+         application/json:
+           type: mylib.user
+           example: !include Examples/user.json
+
+    is: mylib.respoMessage
+    
+/products:
+  get:
+    description: This is list of products by category
+    responses:
+      200:
+        body:
+          application/json:
+
+              example: !include Examples/product.json
+    is: mylib.respoMessage 
+/product{Id}:
+  get:
+   description: This is a specific product
+   responses:
+      200:
+        body:
+          application/json:
+            type: mylib.product
+            example: !include Examples/product.json
+  is: mylib.respoMessage 
+/order/{Id}:
+  get:
+    description: This is an order list by order id
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.order
+            example: !include Examples/order.json
+              
+  is: mylib.respoMessage
+/order/{uid}:
+  get:
+    description: 
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Examples/order.json
+                      
+  is: mylib.respoMessage 
+
+/orders:
+  get:
+    description: This is to get lists of all orders in json array 
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Examples/orderss.json
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Unauthersized"
+             }            
+ 
+    is: mylib.respoMessage
+             
+  post:
+    description: This is to create Orders
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Examples/orderpost.json
+              
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "order Id is created"
+             }             
+  is: mylib.respoMessage
+/categories:
+  get:
+    description: This is to find lists all categories
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Examples/categories.json
+
+  is: mylib.respoMessage  
+  type:
+    mylib.collection:
+      resourcePathName: categories
+      resourcePath: categories
+      
+/category/{id}:
+  get:
+    description: This is to get a category
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.category
+            example: !include Examples/category.json
+    is: mylib.respoMessage                                 

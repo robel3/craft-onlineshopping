@@ -1,0 +1,203 @@
+#%RAML 1.0 Extension
+extends: craft-online-shopping.raml
+resourceTypes:
+  collection: !include Resources/adminresourceType.raml 
+  collections: !include Resources/rootresourceType.raml
+/Adminuser:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            examples: 
+                          {
+              "userid": 133,
+              "email": "abymelk@gmail.com",
+              "date_joined": 151120,
+              "modified": 121220,
+              "type": 5,
+              "deleted": false,
+              "username": "Dom"
+                    }
+  type:
+    mylib.collection:
+      resourcePathName: user
+    resourcePath: user
+    server:
+     resourcePathName: user
+     resourcePath: user
+  delete:
+    description: 
+    responses:
+      200:
+       body:
+              application/json:
+                example:
+                  {
+                    message: "user deleted"
+                  }
+/Adminproduct:
+ get:
+   responses:
+    200:
+       body:
+            application/json:
+                examples:
+                  {
+                  "productid": 1,
+                  "categoryid": 15,
+                  "name": "DELL PC",
+                  "description":7,
+                  "video_url": "WWW.DELL.COM",
+                  "price": 2000
+                 }
+ type:
+     mylib.collection:
+       resourcePathName: product
+       resourcePath: product
+     404:
+            body:
+              application/json:
+                example:
+                  {"massage": "product not found"}
+ put:
+    responses:
+          200:
+            description: product updated 
+
+          #  type:
+          #   mylib.collection:
+          #     resourcePathName: product
+          #     resourcePath: product
+ post:
+    responses:
+      200:
+            body:
+              application/json:
+                example:
+                   {
+                  "productid": 1,
+                  "categoryid": 15,
+                  "name": "DELL PC",
+                  "description":7,
+                  "video_url": "WWW.DELL.COM",
+                  "price": 2000
+                  }
+      201:
+            body:
+              application/json:
+                example:
+                 {message: "product successfully created" }        
+ delete:
+   description: 
+   responses:
+      200:
+        body:
+           application/json:
+                example:
+                  {
+                    message: "Products deleted"
+                  }
+/Admincategory:
+  get:
+    responses:
+      200:
+         description: get all categories
+  type:
+      mylib.collection:
+        resourcePathName: categories
+        resourcePath: categories
+      404:
+            body:
+              application/json:
+                example:
+                  {"massage": "Categories Not Found"}
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+                example:
+                  {
+                  "categoryid": 12,
+                  "name": "home electronics"}
+      201:
+            body:
+              application/json:
+                example:
+                  {message: "category created" }
+      404:
+        body:
+           application/json:
+                example:
+                  {"massage": "Categories Not Found"}
+
+  put:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+                  {message: "Category updated"}
+  delete:
+    description:
+    responses:
+        200:
+            body:
+              application/json:
+                example:
+                  {
+                    message: "Categories deleted"
+                  }
+/Adminorder:
+  get:
+    responses:
+      200:
+        description: get all orders/ single order
+  type:
+    mylib.collection:
+      resourcePathName: order
+      resourcePath: order 
+    404:
+      body:
+        application/json:
+          example:
+                  {"massage": "Order Not Found"}  
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                  "orderid": 1327,
+                  "userid": 1333,
+                  "addressid": 201,
+                  "discountid": 1,
+                  "created": 1596303114250,
+                  "modified": null,
+                  "status": "Accepted",
+                  "amount": 1000
+                  }
+      201:
+        body:
+          application/json:
+            example:
+                  {message: "order successfully created" }
+  put:
+     responses:
+       200:
+         body:
+           application/json:
+                example:
+                     {message: "order updated"}
+  delete:
+    description:
+    responses:
+        200:
+            body:
+              application/json:
+                example:
+                  {
+                    message: "order deleted"
+                  }

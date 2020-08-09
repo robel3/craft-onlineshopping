@@ -1,0 +1,45 @@
+#%RAML 1.0 Trait
+description: the <<resourcePathName>> Bad Request
+responses:
+    400:
+      body:
+        application/json:
+         examples:
+           {message: "<<resourcePath>> Bad Request"}
+    401:
+      description:  the <<resourcePathName>> unauthorized
+      body:
+       application/json:
+          examples:
+             {message: "<<resourcePath>> Unauthorized"}
+    402:
+        description: <<resourcePathName>> Unauthorized payment
+        body:
+         application/json:
+          examples:
+             {message: "<<resourcePath>> Unauthorized payment"}
+    403:
+      description:  <<resourcePathName>> Forbidden
+      body:
+       application/json:
+         examples:
+              {message: "<<resourcePath>> Forbidden"}
+    404:
+      description: <<resourcePathName>> Not Found
+      body:
+           application/json:
+             example:
+               {message: "<<resourcePath>> NOT_FOUND"}
+    502:
+      description: <<resourcePathName>> Bad Gateway
+      body:
+        application/json:
+         examples:
+          {message: "<<resourcePath>> Bad Gateway"}
+    511:
+      description: <<resourcePathName>> Authentication Required
+      body:
+       application/json:
+          example:
+           {message: "<<resourcePath>> Authentication Required"}
+  

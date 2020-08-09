@@ -1,0 +1,22 @@
+              [
+              {
+                 "categoryid": 10,
+                 "name": "labtop"
+              },
+              {
+                 "categoryid": 11,
+                 "name": "laptops"
+              },
+               {
+                 "categoryid": 12,
+                 "name": "home electronics"
+              },
+                {
+                  "categoryid": 13,
+                 "name": "mouse"
+              },
+                {
+                  "categoryid": 14,
+                  "name": "mobile accesories"
+              }
+              ]

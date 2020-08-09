@@ -1,0 +1,20 @@
+#%RAML 1.0 Trait
+responses:
+  200:
+    description:  the <<resourcePathName>> Not Success
+    body:
+      application/json:
+        examples:
+          {message: "<<resourcePath>> Not Success"}
+  201:
+    description: the <<resourcePathName>> Not created
+    body:
+      application/json:
+        example:
+          {message: "<<resourcePath>> Not Created"}
+  203:
+    description:  the <<resourcePathName>> Not Accepted
+    body:
+      application/json:
+        example:
+             {message: "<<resourcePath>> Not Accepted"}
