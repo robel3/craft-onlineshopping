@@ -1,0 +1,40 @@
+#%RAML 1.0 Trait
+responses:
+  200:
+    body:
+      application/json:
+        example:
+          {
+    "categoryid": 11,
+    "name": "laptops"
+          }
+  201:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Catagory Created"
+          }
+  401:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Unauthorized Person"
+          }
+  
+  403:
+    body:
+      application/json:
+            example:
+              {
+                "message": "Forbidden"
+              }
+  
+  404:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Sorry,Page Not Found"
+          }

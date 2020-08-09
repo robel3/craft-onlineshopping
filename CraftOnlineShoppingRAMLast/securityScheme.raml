@@ -1,0 +1,30 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 2.0
+description: This is a tokken security setup supported by an oauth authentication security 
+describedBy:
+  headers:
+    Authorization:
+      description: For the user to access the resource and to manipulate the different kinds of HTTP methods needed to attach this tokken security schema.
+      type: string
+  queryParameters:
+    access_token:
+      description: user have to send a valid {access_token} queryparam
+      type: string
+  responses:
+    401:
+      body:
+        application/json:
+          example:
+            {
+              "message": "Expired Token"
+            }
+    403:
+      body:
+        application/json:
+          example:
+            {
+              "message": Access are not allowed
+            }
+            
+      
+      

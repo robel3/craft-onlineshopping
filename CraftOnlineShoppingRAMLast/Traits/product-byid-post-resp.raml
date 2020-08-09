@@ -1,0 +1,44 @@
+#%RAML 1.0 Trait
+responses:
+  200:
+          body:
+            application/json:
+              example:
+                {
+      "productid": 0,
+      "categoryid": 10,
+      "name": "FZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
+                }
+  201:
+    body:
+      application/json:
+        example:
+          {
+            message: "Product Posted"
+          }
+  401:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Unauthorized Person"
+          }
+    
+
+  403:
+      body:
+        application/json:
+          example:
+            {
+                "message": "Forbidden"
+            }
+  404:
+      body:
+        application/json:
+          example:
+              {
+                "message": "Sorry,Page Not Found"
+              }

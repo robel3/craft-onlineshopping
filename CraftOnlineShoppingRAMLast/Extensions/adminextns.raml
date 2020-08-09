@@ -1,0 +1,263 @@
+#%RAML 1.0 Extension
+extends: ../craftonlineshopping.raml
+resourceTypes:
+  collection: !include ../Resource/AdminresourceType.raml
+traits:
+  responseMessage: !include ../Traits/Responses.raml
+  admin-getallusers-res-message: !include ../Traits/Admin-get-trait.raml
+  admin-get-delete-responseMessage: !include ../Traits/admin-get-delete-res.raml
+  admin-get-userid-res: !include ../Traits/Admin-get-userid.raml
+  admin-userid-deleteresponseMessage: !include ../Traits/Admin-userid-delete.raml
+  get-product-response: !include ../Traits/get-product.raml
+  product-post-resp: !include ../Traits/product-post-resp.raml
+  product-delete-resp: !include ../Traits/product-delete-resp.raml
+  product-byid-post-resp: !include ../Traits/product-byid-post-resp.raml
+  product-byid-delete-resp: !include ../Traits/product-byid-delete-resp.raml
+  get-order-resp: !include ../Traits/get-orders-resp.raml
+  get-order-byuid: !include ../Traits/order-get-byuid.raml
+  order-put-byuid: !include ../Traits/order-put-byuid.raml
+  catagories-get: !include ../Traits/catagories-get.raml
+  catagories-post: !include ../Traits/catagories-post.raml
+  catagories-delete: !include ../Traits/catagories-delete.raml
+  catagories-get-byid: !include ../Traits/catagories-get-byid.raml
+  catagories-post-byid: !include ../Traits/catagories-post-byid.raml
+  catagories-put-byid: !include ../Traits/catagories-put-byid.raml
+  catagories-delete-byid: !include ../Traits/catagories-delete-byid.raml
+
+/admingetallusers:
+  get:
+    description: This is an admin privilage to access all users in the database
+    responses:
+      
+  is: [admin-getallusers-res-message]
+  type:
+    collection:
+      resoursepath: users
+
+  delete:
+    description: This one helps the admin to delete/Drop/truncate all the Users from the DB
+    responses:
+    is: [admin-get-delete-responseMessage]
+
+  /{admin-get-users-by-ID}:
+    get:
+      description: theis Helps the Admin to access a single user via Id
+      queryParameters:
+        userid:
+          type: integer
+        
+      responses:
+      is: [admin-get-userid-res]
+        
+    type:
+      collection:
+        resoursepath: users
+
+    delete:
+      description: admin deleting a speific user by his / her user id
+      responses:
+      is: [admin-userid-deleteresponseMessage]
+
+/admin-get-all-products:
+  get:
+    description: Admin accessing all products
+    responses:
+    is: [get-product-response]
+
+  type:
+      collection:
+        resoursepathName: products
+        resoursepath: users
+
+
+  post:
+    description: in the unlikely event of the admin posting all products at a time
+    body:
+      application/json:
+        example: !include ../Examples/product.json
+          
+    responses:
+    is: [product-post-resp]
+          
+  put:
+    description: I can not imagine a scenario where the admin has to update all the products at a time. Hence [put] is irrelevant here
+  delete:
+    description: in the highly unlickly scenario of the Admin deleting the products ..
+    responses:
+    is: [product-delete-resp]
+
+  /{admin-get-product-by-ID}:
+    get:
+      description: Admin accessing a single products by ID
+      queryParameters:
+        productid:
+          type: integer
+      
+      responses:
+      is: [product-byid-post-resp]
+
+    post:
+      description: in the event of the admin posting a singlr products at a time
+      queryParameters:
+        productid:
+          type: integer
+
+        categoryid:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        video_url:
+          type: string
+        price:
+          type: integer  
+
+      responses:
+      is: [product-byid-post-resp]
+  
+          
+    put:
+      description: in the event of the admin updating a singlr products at a time
+      queryParameters:
+        productid:
+          type: integer
+
+        categoryid:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        video_url:
+          type: string
+        price:
+          type: integer  
+
+      responses:
+      is: [product-byid-post-resp]
+
+    delete:
+      description:  the Admin deleting a products by productID
+      queryParameters:
+        productid:
+          type: integer
+        
+      responses:
+      is: [product-byid-delete-resp]
+
+/Admin-get-orders:
+  get:
+    responses:
+    is: [get-order-resp]
+          
+  type:
+      collection:
+        resoursepathName: orders
+        resoursepath: users
+   
+  /{Admin-get-by-orderuserid}:
+    get:
+      queryParameters:
+        userid:
+          type: integer
+      responses:
+      is: [get-order-byuid]
+      
+  put:
+    queryParameters:
+      userid:
+        type: integer
+    responses:
+    is: [order-put-byuid]
+  
+/{Admin-get-order-by-id}:
+    get:
+      queryParameters:
+        orderid:
+        type: integer
+      responses:
+      is: [get-order-byuid]
+      
+    put:
+      queryParameters:
+        orderid:
+          type: integer
+      responses:
+      is: [order-put-byuid]
+
+/Admin-get-catagories:
+  get:
+    description: admin can access all product catagories here
+    responses:
+    is: [catagories-get]    
+  type:
+      collection:
+        resoursepathName: catagories
+        resoursepath: users
+
+  post: 
+    queryParameters:
+      categoryid:
+        type: integer
+        example:
+          123
+    responses:
+    is: [catagories-post]
+      
+  put:
+    description: i dont think this endpoint is relevant for this matter 
+
+  delete:
+    description: 
+    responses:
+    is: [catagories-delete]
+      
+
+  /{Admin-get-catagories-by-ID}:
+    get:
+      description: the admin can access a specific product catagoryusing catagoryID
+      queryParameters:
+        categoryid:
+          type: integer
+          example: 123
+      responses:
+      is: [catagories-get-byid]  
+    post:
+      description: a section where new product catagories will be created with a new catagory ID 
+      queryParameters:
+            categoryid:
+              type: integer
+              example: 1234
+            name:
+              type: string
+              example: "Abe"
+      responses:
+      is: [catagories-post-byid]
+   
+    put:
+      description: this section is where the admin will update a specific product catagory using a specific catagory ID
+      queryParameters:
+            categoryid:
+              type: integer
+              example: 1234
+            name:
+              type: string
+              example: "Abe"
+      responses:
+      is: [catagories-put-byid]
+
+    delete:
+      description: this is a section where admin can delete a specific catagory using catagory id 
+      queryParameters:
+            categoryid:
+              type: integer
+              example: 1234
+            
+      responses:
+      is: [catagories-delete-byid]
+      
+
+    
+    
+      

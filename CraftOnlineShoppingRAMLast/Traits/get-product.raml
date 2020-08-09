@@ -1,0 +1,39 @@
+#%RAML 1.0 Trait
+responses:
+  200:
+    body:
+      application/json:
+        example:
+          [
+                {
+      "productid": 0,
+      "categoryid": 10,
+      "name": "FZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
+   },
+      {
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   }
+              ]
+      
+  401:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Unauthorized Person"
+          }
+  403:
+    body:
+      application/json:
+        example:
+          {
+            "message": "Forbidden"
+          }

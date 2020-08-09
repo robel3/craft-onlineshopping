@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+usage: In this specific section, we are going to store the basic library resourses that we ought to use in the build up of The REST API RAMl specification.
+types:
+  userss: !include /DataTypes/user.raml
+  product: !include /DataTypes/productdataType.raml
+  order: !include /DataTypes/orderdataType.raml
+  catagories: !include /DataTypes/catagoriesdataType.raml
+  
+traits:
+  responseMessage: !include /Traits/Responses.raml
+  userpostresponseMessage: !include /Traits/user-post-trait.raml
+  orderpostresponseMessage: !include /Traits/order-post-trait.raml
+  ordersgetresponseMessage: !include /Traits/orders-get-trait.raml
+resourceTypes:
+  collection: !include /Resource/AdminresourceType.raml
+securitySchemes:
+  oath: !include /securityScheme.raml
+#documentation:
+#  - !include documentation.raml

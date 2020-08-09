@@ -1,0 +1,170 @@
+#%RAML 1.0
+title: CraftOnlineShopping
+version: 1.0
+uses:
+  lib: library.raml
+
+/users:
+  get:
+    description: this section consists of all Users Data in bulk     
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.userss
+            example: !include /Examples/users.json
+              
+  is: 
+    lib.responseMessage
+            
+
+  /{userid}:
+    get:
+      description: this part lets to identify the user via user ID
+      queryParameters:
+        uid:
+          required: true
+          type: integer
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.userss
+              example: !include Examples/userid.json
+                
+    is: 
+      lib.responseMessage
+      
+  post:
+    description: This helps to create a user to create an account from the customers end
+    body:
+      application/json:
+        type: lib.userss
+        example: !include /Examples/userid.json
+            
+    responses:
+      
+    is: 
+      lib.responseMessage
+    
+
+/products:
+  get:
+    description: thorough Lists of products 
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.product
+            example: !include /Examples/product.json
+              
+    is: 
+      lib.responseMessage
+
+  /{products/id}:
+    get:
+      description: a single or more products identified by product ID
+      queryParameters:
+        productid:
+          required: true
+          example: "10"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.product
+              example: !include /Examples/productsID.json
+                
+              
+    is: 
+      lib.responseMessage
+    
+
+/orders:
+  get:
+    description: This is an Order Controller, where you will find list of orders in bulk or by ID
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.order
+            example: !include /Examples/orders.json
+  is: 
+    lib.ordersgetresponseMessage
+    
+  /{orders/uid}:
+    get:
+      description: Order by specific user ID
+      queryParameters:
+        userid:
+          required: true
+          type: integer
+            
+      responses:
+          200:
+            body:
+              application/json:
+                type: lib.order
+                example: !include /Examples/orderUserID.json
+                  
+    is: 
+      lib.responseMessage
+      
+  /{orders/id}:
+    get:
+      description: helps to identify an order by its order ID
+      queryParameters:
+        id:
+          required: true
+          type: integer
+
+      responses:
+          200:
+            body:
+              application/json:
+                type: lib.order
+                example: !include /Examples/orderID.json
+                   
+    is: 
+      lib.responseMessage
+      
+  
+  post:
+    description:
+    responses:
+      
+    is: 
+      lib.orderpostresponseMessage
+    
+
+/catagories:
+  get:
+    description: 
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.catagories
+            example: !include /Examples/catagories.json
+
+  is: 
+    lib.responseMessage
+
+  /{catagory/id}:
+      get:
+        description: 
+        queryParameters:
+          categoryid:
+            required: true
+            type: integer
+
+        responses:
+          200:
+            body:
+              application/json:
+                type: lib.catagories
+                example: !include /Examples/CatagoriesByID.json
+        is: 
+          lib.responseMessage
