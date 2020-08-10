@@ -1,0 +1,11 @@
+#%RAML 1.0 ResourceType
+get:
+  description: uthe resource  <<resourcePathName>> not found
+  responses:
+     "404":
+        body:
+          application/json:
+            example:
+              {
+                "Message": "<<resourcePath>> not found"
+              }

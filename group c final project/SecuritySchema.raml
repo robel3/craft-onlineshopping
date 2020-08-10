@@ -1,0 +1,25 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 1.0
+description: This Api supports oauth 2.0 security
+describedBy:
+  headers:
+    Authorization: 
+      description: user have to send token to acess any resource
+      type: string
+  queryParameters:
+    acess_token:
+      description: user have to send valid token with the queryparams
+  responses:
+    401:
+      body:
+        application/json:
+          example:
+            {
+              "message":   "bad or expired token is used"         }
+    403:
+      description: not allowed to acces the resource
+
+
+          
+    
+        

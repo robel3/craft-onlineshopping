@@ -1,0 +1,165 @@
+#%RAML 1.0 Extension
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/80520f30-ad34-4b7e-8c26-5ba43a76a27c/ # 
+extends: craft-online-shoping.raml
+resourceTypes:
+  Collection: !include res/AdminresType.raml    
+/adminUser:
+  get:
+  type:
+    Collection:
+      resourcePathName: users
+      resourthPath: users
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                Message: "resource deleted"
+              }
+/adminusers{usersid}:
+  get:
+  type:
+    Collection:
+      resourcePathName: usersid
+      resourthPath: usersid
+  post:   
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+               {
+                message: "resource deleted"
+               }
+/AdminProduct:
+  get:
+  type:
+    Collection:
+      resourcePathName: product
+      resourthPath: product
+  post:       
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+/AdminProduct{id}:
+  get:
+  type:
+    Collection:
+      resourcePathName: products{id}
+      resourthPath: product{id}
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+
+/Adminorder:
+  get:
+  type:
+    Collection:
+      resourcePathName: orders
+      resourthPath: orders
+  post:
+  put:
+
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example: 
+              {
+               "Message": "resource deleted"
+             }
+
+/Adminorders{id}:
+  get:
+  type:
+    Collection:
+      resourcePathName: orders{id}
+      resourthPath: orders{id}
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "resource deleted"
+            }
+/Adminorders{uid}:
+  get:
+  type:
+    Collection:
+      Collection:
+      resourcePathName: orders{uid}
+      resourthPath: orders{uid}
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "resource deleted"
+            }
+/Admicatagories:
+  get:
+  type:
+    Collection:
+      resourcePathName: catagoties
+      resourcePath: catagories
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "resource deleted"
+            }
+/Admincatagories{id}:
+  get:
+  type:
+      Collection:
+        resourcePathName: catagories{id}
+        resourcePath: catagoryid
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "resource deleted"
+            }
+
+              
+    

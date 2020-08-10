@@ -1,0 +1,148 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/7bef9813-d65e-4a17-b6ca-03e7f3e24eaa/ # 
+title: craft-online-shoping
+version: 1.0
+uses:
+  mylib: library.raml
+
+/users:
+  description: this is the users resources
+  get:
+    description: users resource get http status code response
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.users[]
+            example: !include Examples/users.json
+    is: [mylib.ErrorMessage:]
+  type:
+    mylib.Collection:
+      resourcePathName: users
+      resourcePath: user
+  /{userid}:
+    get:
+      description: this is the user id description 
+      responses:
+          200:
+            body:
+              application/json:
+                type: mylib.users[]
+                example: !include Examples/users.json
+      is: [mylib.ErrorMessage:]
+    type:
+      mylib.Collection:
+        resourcePathName: userid
+        resourcePath: userid
+  post:
+      body:
+        application/json:
+          example: !include Examples/userRequestPost.raml  
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/userRequestPost.raml     
+      is: [mylib.ErrorMessage:]
+/products:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.product[]
+            example: !include Examples/products.json
+    is: [mylib.ErrorMessage:]
+  type:
+    mylib.Collection:
+      resourcePathName: products
+      resourcePath: products
+  /{Productid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/productid.json
+      is: [mylib.ErrorMessage:]
+    type:
+      mylib.Collection:
+      resourcePathName: orders
+      resourcePath: order
+/orders:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+                example: !include Examples/orders.json
+    is: [mylib.ErrorMessage:]
+  type:
+    mylib.Collection:
+    resourcePathName: orders
+    resourcePath: order
+  post:
+      body:
+        application/json:
+          example: !include Examples/OrderRequestPost.raml
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/OrderResponsePost.raml
+    
+      is: [mylib.ErrorMessage:]
+  /{Orderid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                  example: !include Examples/orderid.json
+      is: [mylib.ErrorMessage:] 
+    type:
+      mylib.Collection:
+        resourcePathName: orders
+        resourcePath: order
+  /{orderUid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/orderUid.json
+      is: [mylib.ErrorMessage:]
+    type:
+      mylib.Collection:
+        resourcePathName: orders
+        resourcePath: order   
+/Categories: 
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.category[]
+            example: !include Examples/Category.json
+    is: [mylib.ErrorMessage:]
+  type:
+    mylib.Collection:
+      resourcePathName: category
+      resourcePath: category
+  /{Categoryid}:
+    type:
+      mylib.Collection:
+        resourcePathName: Categoryid
+        resourcePath: Categoryid
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.category
+              example: !include Examples/categoryid.json
+      is: [mylib.ErrorMessage:]
+  
+
