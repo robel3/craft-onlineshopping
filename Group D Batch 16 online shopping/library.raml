@@ -1,0 +1,18 @@
+#%RAML 1.0 Library
+usage:
+
+traits:
+  OnlineShopTraits: !include trait/response.raml
+resourceTypes:
+  rootcollection: !include resource/rootresourceType.raml
+  adminServ: !include resource/adminresourceType.raml
+securitySchemes:
+  schema: !include securityScheme.raml
+
+annotationTypes:
+  annotation: !include annotation.raml
+
+
+
+
+  

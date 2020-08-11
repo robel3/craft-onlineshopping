@@ -1,0 +1,26 @@
+#%RAML 1.0 Extension
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/79b6cdea-e3cf-472f-a4b8-4933835716ae/ # 
+extends: craft-online-shopping.raml
+
+uses:
+  adminlib: library.raml
+  
+/Adminusers:
+  type:
+      adminlib.adminServ:
+        resourcePathName: users
+        resourcePath: user   
+/Adminproduct:
+  type:
+    adminlib.adminServ:
+        resourcePathName: products
+        resourcePath: product  
+  post:
+  put:
+/Adminorders:
+  type:
+    adminlib.adminServ:
+        resourcePathName: orders
+        resourcePath: order 
+  
+              

@@ -1,0 +1,162 @@
+#%RAML 1.0
+title: craft-online-shopping.raml
+baseUri: http://dev.icraftsoft.net:8095/v1
+version: v1
+description: This is onlineshopping API design
+ 
+uses:
+  cslib: library.raml
+  onlineShoDatatype: datatypes/OnlineShoping-data-types.raml
+documentation:
+  - !include documentation.raml
+
+/users:
+  get:    
+    description: get all users
+    responses:
+      200:
+        body:
+          application/json:
+            type: onlineShoDatatype.UserDataType
+            example: !include examples/user.raml
+    is: [cslib.OnlineShopTraits:]  
+  type:
+    cslib.rootcollection:
+      resourcePathName: users
+      resourcePath: user
+  post:
+    securedBy: cslib.schema
+    description: create user
+    body:      
+      application/json:
+        type: onlineShoDatatype.AllUsersDataType
+        example: !include examples/userpost.raml  
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "uid": 0
+              }
+    is: [cslib.OnlineShopTraits]
+  /{id}:   
+    get:
+      responses:
+        200:
+          body:
+            application/json: 
+              type: onlineShoDatatype.UserDataType
+              example: !include examples/user.raml
+      is: [cslib.OnlineShopTraits]
+    type:
+      cslib.rootcollection:
+        resourcePathName: users
+        resourcePath: user
+/products:
+  get:
+    description: get all products
+    responses:
+      200:
+        body:
+          application/json:
+            type: onlineShoDatatype.AllProductsDataType[]
+            example: !include examples/products.raml
+    is: [cslib.OnlineShopTraits]
+  type:
+    cslib.rootcollection:
+      resourcePathName: products
+      resourcePath: product                        
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: onlineShoDatatype.ProductDataType
+              example: !include examples/productbyid.raml         
+      is: [cslib.OnlineShopTraits] 
+    type:
+      cslib.rootcollection:
+        resourcePathName: products
+        resourcePath: product
+/categories:
+  get:    
+    description: get all categories
+    responses:
+      200:
+        body:
+          application/json:
+            type: onlineShoDatatype.AllCatagoriesDataType[]
+            example: !include examples/categories.raml
+    is: [cslib.OnlineShopTraits] 
+  type:
+    cslib.rootcollection:
+      resourcePathName: categories
+      resourcePath: category         
+  /{id}:
+    get:     
+      responses:
+        200:
+          body:
+            application/json:
+              type: onlineShoDatatype.CategoryDataType
+              example: !include examples/category.raml       
+      is: [cslib.OnlineShopTraits] 
+    type:
+      cslib.rootcollection:
+      resourcePathName: categories
+      resourcePath: category  
+/orders:
+  get:
+    description: get all orders
+    responses:
+      200:
+        body:
+          application/json:
+            type: onlineShoDatatype.AllOrdersDataType[]
+            example: !include examples/orders.raml      
+    is: [cslib.OnlineShopTraits] 
+  type:
+      cslib.rootcollection:
+        resourcePathName: orders
+        resourcePath: order
+  post:
+    description: create order
+    body:
+      application/json:
+        example: !include examples/orderspost.raml
+    responses:
+      201:
+        body:
+          application/json:
+            type: onlineShoDatatype.AllOrdersDataType
+            example: !include examples/order.raml 
+    is: [cslib.OnlineShopTraits]                        
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: onlineShoDatatype.orderidDataType
+              example: !include examples/order.raml                      
+      is: [cslib.OnlineShopTraits] 
+    type:
+      cslib.rootcollection:
+        resourcePathName: orders
+        resourcePath: order
+  /{uid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: onlineShoDatatype.orderuidDataType
+              example: !include examples/order.raml
+      is: [cslib.OnlineShopTraits] 
+    type:
+      cslib.rootcollection:
+        resourcePathName: orders
+        resourcePath: order uid
+
