@@ -11,21 +11,23 @@ documentation:
   - !include documentation.raml
 
 /users:
-  get:
+  get:    
     description: get all users
     responses:
       200:
         body:
           application/json:
             type: onlineShoDatatype.UserDataType
-            example: !include/examples/user.raml
+            example: !include examples/user.raml
     is: [cslib.OnlineShopTraits:]  
   type:
     cslib.rootcollection:
       resourcePathName: users
       resourcePath: user
+  post:
+    securedBy: cslib.schema
     description: create user
-    body:
+    body:      
       application/json:
         type: onlineShoDatatype.AllUsersDataType
         example: !include examples/userpost.raml  
@@ -79,7 +81,7 @@ documentation:
         resourcePathName: products
         resourcePath: product
 /categories:
-  get:
+  get:    
     description: get all categories
     responses:
       200:
@@ -93,7 +95,7 @@ documentation:
       resourcePathName: categories
       resourcePath: category         
   /{id}:
-    get:
+    get:     
       responses:
         200:
           body:
