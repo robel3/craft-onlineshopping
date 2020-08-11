@@ -1,0 +1,21 @@
+#%RAML 1.0 AnnotationTypeDeclaration
+properties:
+  usage:
+    description: use this annotation to understand the detail the online shopping rest Api
+  controller:
+    description: the user of dev have to be developed the metadata
+    properties:
+      URL:
+        description: dev.icraftsoft.net is the url which is used to access the rest Api
+    default: href
+  protocol:
+    description: the rest api protocol api 
+    default: http
+  visibility?:
+    description: should the user or dev need to know the urs to use the http method of the rest api
+    type: boolean
+    default: true
+  methodusage?:
+    description: can the users have privillage to use the all http method
+    type: boolean
+    default: false

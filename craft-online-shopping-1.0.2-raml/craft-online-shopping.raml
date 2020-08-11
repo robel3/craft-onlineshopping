@@ -1,0 +1,144 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/09f6c199-93fd-4d2c-ae43-984cce3de3d7/ # 
+title: craft-online-shopping
+version: 1.0
+mediaType: 
+- application/json
+uses:
+  mylib: library.raml
+/users:
+  description: this is the users resource
+  get:
+    queryParameters:
+      Id:
+       description: Id 
+       type: integer
+       required: false
+      fullname:
+        description: fname and lname 
+        type: 
+        enum: [John, Mike]
+        required: false
+      username:
+        description: username
+        maxLength: 10
+        minLength: 2
+        required: false
+        default: John
+
+    description: users source get http status code resource
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.user[]
+            example: !include examples/users.json 
+    is:
+      - mylib.responcesmessage:
+  type:
+    mylib.rootresourceType:
+      resourcePath: users data
+  post:
+    responses:
+      201:
+       body:
+        application/json:
+         example:
+          {
+            "uid": 1487"
+              }   
+            
+  /(usersid): 
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/userid.json 
+      is:
+      - mylib.responcesmessage:
+    type:
+      mylib.rootresourceType:
+      resourcePath: usersid    
+/products:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/produc.json
+    is:
+      - mylib.responcesmessage:
+  type:
+      mylib.rootresourceType:
+        resourcePath: product    
+  /productid:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/productid.json
+      is:
+      - mylib.responcesmessage:
+    type:
+      mylib.rootresourceType:
+        resourcePath: productid
+    
+/orders:
+  get:
+    responses:
+      200:
+       body:
+         application/json:
+           example: !include examples/order.json
+
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {
+                " created"
+              }
+    is:
+      - mylib.responcesmessage:
+  type:
+    mylib.rootresourceType:
+      resourcePath: orders      
+/orderid:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:  !include examples/orderid.json
+  is: 
+   mylib.responcesmessage:
+  
+/catagorys:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/category.json
+  type:
+    mylib.rootresourceType:
+      resourcePath: catagory   
+ 
+  is: 
+     mylib.responcesmessage:              
+
+/categoryid:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/categoryid.json
+    is: 
+     mylib.responcesmessage:
+
+     
