@@ -1,0 +1,33 @@
+#%RAML 1.0
+title: online shoppiing
+version: 1.0
+uses:
+  lib: library.raml
+/Cataogories:
+  description: find all catagories
+  type: lib.catagories
+  /{Catagoryid}:
+    description: find catagories by id
+    type: lib.catagoryid
+/Orders:
+  description:  get all orders
+  type: lib.orders
+  /{Orderid}:
+    description: get order by id
+    type: lib.orderid
+  /{Orderuid}:
+    description: get order by uid
+    type: lib.orderuid         
+/Product:
+  description: get all product
+  type: lib.product
+  /{productid}:
+    description: get product by id
+    type: lib.productid
+/users:
+  description: get all users
+  type: lib.users
+  /{userid}: 
+   description:  get user by id
+   type: lib.userid
+  

@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+type:
+  lib.collection:
+    response-get-type: lib.order[]
+    response-get-example: !include ../examples/GETorder.json
+    error-trait-get: lib.respomessage
+
+    response-post-type: lib.order[]
+    request-post-type: lib.order
+
+    request-post-example: !include ../examples/orderid.json
+    response-post-example: !include ../examples/POSTorder.json
+    error-trait-post: lib.respomessage

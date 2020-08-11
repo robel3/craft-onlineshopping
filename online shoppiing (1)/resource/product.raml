@@ -1,0 +1,6 @@
+#%RAML 1.0 ResourceType
+type:
+  lib.getCollection:
+    response-get-type: lib.product[]
+    response-get-example: !include ../examples/product.json
+    error-trait-get: lib.respomessage

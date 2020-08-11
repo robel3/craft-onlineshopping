@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+type:
+  lib.collection:
+    response-get-type: lib.user[]
+    response-get-example: !include ../examples/GETuser.json
+    error-trait-get: lib.respomessage
+
+    response-post-type: lib.uid
+    request-post-type: lib.user
+
+    request-post-example: !include ../examples/userid.json
+    response-post-example: !include ../examples/uid.json
+    error-trait-post: lib.respomessage
