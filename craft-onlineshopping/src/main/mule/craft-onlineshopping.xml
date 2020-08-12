@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="067fe246-6667-41d6-ba83-4cd685b6c48d" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="getAllProducts" doc:id="afb68b4b-ecf2-4616-af19-b44a6253b8fb" >
+		<http:listener doc:name="Listener" doc:id="f19d94bb-be4f-4ca1-8cc5-597e70777d95" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="14970d81-4b17-4320-b413-1573828fedc7" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+	{
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   },
+   {
+      "productid": 2,
+      "categoryid": 16,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   }
+   
+
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getProductsById" doc:id="dc398f08-7f18-4501-a5d7-688f2385d3c7" >
+		<http:listener doc:name="Listener" doc:id="634dccf0-6fa4-4145-8b78-f7d862f5c831" config-ref="HTTP_Listener_config" path="/product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="4a7a35e5-3483-4ace-8994-1c6efbd9fa65" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getAllUsers" doc:id="8d5a1edf-6a92-43b9-b304-87a34144bfc1" >
+		<http:listener doc:name="Listener" doc:id="9bf91774-9d79-49ad-b8a8-8bb01bbb17e6" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="0c695e9a-9d99-436b-9b2e-36a538328095" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[ {
+    "userid": 900,
+    "email": "faye@hotmail.com",
+    
+  },
+  {
+    "userid": 1000,
+    "email": "Betty@gmail.com",
+    
+  }
+  ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postUser" doc:id="58eb73ef-d663-4fca-b652-ad1d744d6085" >
+		<http:listener doc:name="Listener" doc:id="dd1829d8-526f-43d9-ad8d-caa8b7bf2fa3" config-ref="HTTP_Listener_config" path="/postUser"/>
+		<ee:transform doc:name="Transform Message" doc:id="7ab293c1-2db1-4297-8b9c-d7b925489b2a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid": 1596
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getUserById" doc:id="6c346c8c-1cbd-47fa-98e3-f85492573fd1" >
+		<http:listener doc:name="Listener" doc:id="20c111ce-fc9e-4889-bf3a-e8eaea183591" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="1f3d7026-c4fd-4ef3-b0c3-a2663e82076b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "username": "mike",
+    "email": "mike@hotmail.com"
+ }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
