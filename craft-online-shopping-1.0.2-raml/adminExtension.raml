@@ -1,0 +1,120 @@
+#%RAML 1.0 Extension
+extends: craft-online-shopping.raml
+resourceTypes:
+  collection: !include resource/adminresourceType.raml
+/admin:
+  get:
+    responses:
+      404:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource not found"
+              }
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/Adminproduct:
+  # get:
+  #   responses:
+  #     404:
+  #       body:
+  #         application/json:
+  #           example:
+  #             {
+  #               message: "product not found"
+  #             }
+  type:
+    collection:
+      resourcePathName: product
+      resourcePath: product
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/Adminusers:
+  # get:
+  #   responses:
+  #     404:
+  #       body:
+  #         application/json:
+  #           example:
+  #             {
+  #               message: "user not found"
+  #             }
+  type:
+    collection:
+      resourcePathName: user
+      resourcePath: user
+  post:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+
+/Adminorders:
+  # get:
+  #   responses:
+  #     404:
+  #       body:
+  #         application/json:
+  #           example:
+  #             {
+  #               message: "order not found"
+  #             }
+  type:
+    collection:
+      resourcePathName: orders
+      resourcePath: orders
+  post:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/Admincategory:
+  get:
+    responses:
+      404:
+        body:
+          application/json:
+            example:
+              {
+                message: "category not found"
+              }
+  post:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+       

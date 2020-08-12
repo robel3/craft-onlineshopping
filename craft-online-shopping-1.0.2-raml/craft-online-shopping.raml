@@ -1,0 +1,165 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/40d1ba3a-5d2c-486b-8150-c2b5538d997b/ # 
+title: craft-online-shopping
+version: 1.0
+mediaType: application/json
+
+uses:
+  mylib: library.raml
+/users:
+  get:
+    queryParameters:
+      id:
+        type: integer
+        required: true
+      fullName:
+        displayName: username
+        description: fname and lname of user
+        type: string
+        enum:
+          [jason, bourne]
+        maxLength: 12
+        minLength: 2
+        default: jason
+         
+   
+    description: this is the users resource
+    responses:
+      200:
+        body:
+            type: mylib.users[]
+            example: !include examples/usersExample.raml
+
+  type:
+    mylib.collection:
+      resourcePath: users
+         
+  is:
+  - mylib.responseMessage:
+    
+  /{usersid}:
+    get:
+      responses:
+       200:
+        body: 
+            type: mylib.users
+            example: !include examples/userExample.raml
+    type:
+      mylib.collection:
+        resourcePath: usersid
+        
+    is:
+    - mylib.responseMessage:
+            
+  post:
+    responses:
+      201:
+        body:
+            example: !include examples/newUserExample.raml
+              
+/products:
+  get:
+    queryParameters:
+      productsid:
+        type: integer 
+    responses:
+      200:
+        body:
+            example: !include examples/productsExample.raml
+  type:
+    mylib.collection:
+     resourcePath: products
+               
+  is:
+  - mylib.responseMessage:
+    
+  /{productsid}:
+   get:
+     responses:
+       200:
+         body:
+             example: !include examples/productsIdExample.raml
+   type:
+    mylib.collection:
+      resourcePath: productsid
+              
+   is:
+   - mylib.responseMessage:
+       
+/orders:
+  get:
+    responses:
+      200:
+        body:
+            example: !include examples/orderExample.raml
+  type:
+    mylib.collection:
+      resourcePath: orders
+              
+  is:
+  - mylib.responseMessage:
+       
+  /{orderid}:
+    get:
+      responses:
+       200:
+         body:
+             example: !include examples/orderExample.raml
+    type:
+      mylib.collection:
+        resourcePath: ordersid
+
+    is:
+    - mylib.responseMessage:
+                  
+  post:
+    responses:
+      201:
+        body:
+            example: !include examples/NewOrderexample.raml
+
+    is:
+      - mylib.responseMessage:
+        
+  /{uid}:
+    get:
+      responses:
+       200:
+         body:
+             example: !include examples/orderExample.raml
+    type:
+      mylib.collection:
+        resourcePath: ordersuid
+                 
+    is:
+      - mylib.responseMessage:      
+
+/categories:
+  get:
+    responses:
+      200:
+        body:
+            example: !include examples/categoryExample.raml
+  type:
+    mylib.collection:
+      resourcePath: categories
+            
+  is:
+  - mylib.responseMessage:
+       
+  /{categoryid}:
+     get:
+       responses:
+         200:
+           body:
+              example: !include examples/categoryIdExample.raml
+     type:
+      mylib.collection:
+        resourcePath: categoryid
+                
+     is:
+     - mylib.responseMessage:
+      
+      
+         
+          
