@@ -1,0 +1,144 @@
+#%RAML 1.0 Extension
+extends: craft-online-shopping.raml
+resourceTypes:
+  collection: !include resources/adminResourceType.raml
+
+    
+/adminProducts:
+  type:
+    collection:
+      resourcePathName: product
+      resourcePath: product
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.products[]
+            example: !include examples/products.json
+  post:
+    description: creates product
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "product created"
+              }
+              
+    is: 
+    - myLib.createdResponse:  
+  put:
+    description: Update the product information 
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "prodcut updated"
+              }     
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/adminUsers:
+  type:
+    collection:
+      resourcePathName: user
+      resourcePath: user
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.users[]
+            example: !include examples/users.json
+             
+    is: 
+    - myLib.userQueryParams:  
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/adminOrders:
+  type:
+    collection:
+      resourcePathName: order
+      resourcePath: order
+  
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.orders[]
+            example: !include examples/orders.json
+     
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }
+/adminCategories:
+  type:
+    collection:
+      resourcePathName: categories
+      resourcePath: cayegories
+  
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myLib.categories[]
+            example: !include examples/categories.json
+             
+    is: 
+    - myLib.userQueryParams:   
+  post:
+    description: creates category
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "category created"
+              }
+    is: 
+    - myLib.createdResponse:  
+  put:
+    description: Update the category information 
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              message: "category updated"
+              }      
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                message: "resource deleted"
+              }                    

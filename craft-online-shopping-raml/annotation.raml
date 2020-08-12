@@ -1,0 +1,25 @@
+#%RAML 1.0 AnnotationTypeDeclaration
+allowedTargets: [Methods]
+properties:
+  usage:
+    description: use this annotation to understand details about online shopping rest api
+  controller:
+    description: the user or the developer have to be informed about the meta data
+    properties:
+      url:
+        description: dev.icraftsoft.net is the url used to access this rest api 
+        default: href 
+      protocol:
+        description: this rest apt uses HTTP protocol
+        default: http
+      visibility?: # '?' here implies a question
+        description: should the user/dev need to know the url to use the http methods of rest api
+        type: boolean
+        default: true
+      methodUsage?:
+        description: can user have the previlage to use all http methods
+        type: boolean
+        default: false  
+
+
+  

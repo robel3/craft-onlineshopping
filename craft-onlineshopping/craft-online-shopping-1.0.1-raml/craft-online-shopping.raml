@@ -1,0 +1,70 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/7ba0f634-71b7-4c10-83fd-e394bcb14efd/ # 
+title: craft-online-shopping
+version: 1.0
+mediaType: 
+- application/json
+uses:
+  mylibs: library.raml
+/users:    
+  description: this is the users resource 
+  get:
+    queryParameters:
+       id:
+         description: id
+         type: integer
+         required: false
+       fullname:  
+          description: fname and lname
+          type: string
+          enum:
+            [john, mike]
+          required: false
+       username:
+         description: username
+         maxLength: 10
+         minLength: 2
+         required: false
+         default: john  
+    description: users resource get http staus code responce
+    responses:
+      200:
+        body:
+          application/json:                       
+            type: mylibs.user  
+            example: !include examples/users.raml 
+  # type:
+  #   collection:
+  #     resourcePath: mylib.users                     
+        
+  is: 
+  - mylibs.respoMessages:     
+              
+  /{userid}: 
+    description: this is the users resource
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/user.raml         
+                
+    type: mylibs.collection
+    
+        
+  post:      
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+             {
+               "uid": 1526
+             }   
+                   
+    # is: [respoMessages]
+                 
+ 
+
+
+  

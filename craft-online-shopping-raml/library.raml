@@ -1,0 +1,22 @@
+#%RAML 1.0 Library
+usage: To define basic libraries that are used in this rest api
+types:
+  users: !include dataTypes/user.raml
+  products: !include dataTypes/product.raml
+  order: !include dataTypes/order.raml
+  category: !include dataTypes/catagory.raml
+traits:
+    createdResponse: !include traits/response201.raml
+    responseMessages: !include traits/responses.raml
+    userQueryParams: !include traits/userQueryParams.raml
+    orderQueryParams: !include traits/orderQueryParams.raml
+    productQueryParams: !include traits/productQueryParams.raml
+    categoryQueryParams: !include traits/categoryQueryParms.raml
+securitySchemes:
+  oath: !include securityScheme.raml
+resourceTypes:
+  collection: !include resources/rootResourceType.raml  
+annotationTypes:
+  annotation: !include annotation.raml 
+  
+      

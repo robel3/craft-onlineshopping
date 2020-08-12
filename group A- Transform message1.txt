@@ -1,0 +1,134 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="452eca88-af75-4787-b49a-dd87c3096535" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="orderid" doc:id="118848c2-3ec2-4452-90f7-3298f7bc3853" >
+		<http:listener doc:name="Listener" doc:id="be53e71c-ea9d-4834-874e-f1d0c797c81d" config-ref="HTTP_Listener_config" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="089831a3-684f-4796-a628-575601c8bba0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+  "addressid": 0,
+  "amount": 0,
+  "created": 
+    "date": 0,
+    "day": 0,
+    "hours": 0,
+    "minutes": 0,
+    "month": 0,
+    "nanos": 0,
+    "seconds": 0,
+    "time": 0,
+    "timezoneOffset": 0,
+    "year": 0
+  }
+  
+  
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallorders" doc:id="6215ba0c-a06d-4ecd-b213-a6a3ad8b61c2">
+		<http:listener doc:name="Listener" doc:id="e46ff7d8-4ec3-440f-90eb-8b1fb2daa0e0" config-ref="HTTP_Listener_config" path="/orders" />
+		<ee:transform doc:name="Transform Message" doc:id="0fca1206-eeb9-4fe6-9a1d-9d15e53d40a4">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "addressid": 0,
+    "amount": 0,
+    "created": {
+      "date": 0,
+      "day": 0,
+      "hours": 0,
+      "minutes": 0,
+      "month": 0,
+      "nanos": 0,
+      "seconds": 0,
+      "time": 0,
+      "timezoneOffset": 0,
+      "year": 0
+    },
+    "discountid": 0,
+    "modified": {
+      "date": 0,
+      "day": 0,
+      "hours": 0,
+      "minutes": 0,
+      "month": 0,
+      "nanos": 0,
+      "seconds": 0,
+      "time": 0,
+      "timezoneOffset": 0,
+      "year": 0
+    },
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postorder" doc:id="7443a825-6161-43b5-bd75-9bff3a07dc48" >
+		<http:listener doc:name="Listener" doc:id="4e93b385-55f6-4d19-8575-5caa21dd799c" config-ref="HTTP_Listener_config" path="/postorder"/>
+		<ee:transform doc:name="Transform Message" doc:id="0622d93d-9216-41cf-b36f-2809f1da76bd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+	"orderid":123
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallcategories" doc:id="7683f4bb-a4a7-40cd-9193-13255273e3cb" >
+		<http:listener doc:name="Listener" doc:id="4f760d41-2fbf-4c06-9c80-bd4276b96eaa" config-ref="HTTP_Listener_config" path="/categories"/>
+		<ee:transform doc:name="Transform Message" doc:id="0a4a3ff4-5a3f-408d-8370-83286ae14b50" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+
+	
+  {
+    "categoryid": 10,
+    "name": "labtop"
+  },
+  {
+    "categoryid": 11,
+    "name": "laptops"
+  }]
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="categoriesid" doc:id="a5d20eae-df3f-415d-84f3-e34d5fe1055a" >
+		<http:listener doc:name="Listener" doc:id="2427156c-ffe9-48e9-92f4-b06f86603858" config-ref="HTTP_Listener_config" path="/category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="d39b7594-c783-4b5e-bb13-962d78e5f0b9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+	 {
+    "categoryid": 10,
+    "name": "labtop"
+  }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

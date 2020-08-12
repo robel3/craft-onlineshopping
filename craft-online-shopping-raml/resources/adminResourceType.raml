@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType 
+extends: craft-online-shopping.raml  
+get:
+  description: the resource <<resourcePathName>> not found
+  responses:
+    404:
+        body:
+            application/json:
+              example:
+                {
+                  message: "<<resourcePath>> not found"
+                }
+                
