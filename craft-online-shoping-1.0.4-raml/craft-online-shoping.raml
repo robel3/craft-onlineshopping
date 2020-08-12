@@ -1,0 +1,210 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/815e377d-487e-4b6e-a853-a3cb2654a51e/ # 
+title: Craft-online-shoping
+version: 1.0
+documentation: 
+  - !include documentation.raml
+
+mediaType: 
+- application/json
+uses:
+  mylib: library.raml 
+  datatypes: datatyes/data types.raml
+
+/users:
+  description: this is the users resource
+  get:
+    queryParameters:
+      id:
+        description: id
+        type: integer
+        required: false
+      fullname:
+        description: fname and lname
+        type: string
+        enum:
+          [john, mike]
+        required: false 
+      username:
+        description: username
+        maxLength: 10
+        minLength: 2
+        required: false
+        default: "john mike"
+    
+    description: user resource get http status code responce  
+    responses:
+      200:
+        body:
+          application/json:
+            type: datatypes.UsersDataType
+            example: !include examples/Users.raml
+  
+  type: 
+    mylib.collection:
+     resourcePath: Users 
+      
+     
+  is: 
+  - mylib.respoMessage:
+  
+
+  /{userid}:
+    description: this is users resource
+    get:
+      responses:
+       200:
+          body:
+            application/json:
+              type: datatypes.UserDataType
+              example: !include examples/User.raml
+              
+    type: 
+     mylib.collection:
+      resourcePath: User
+
+    is: 
+    - mylib.respoMessage:
+        
+                
+  post:
+    description: list of status code
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/postusers.raml
+              
+    
+    is: 
+    - mylib.posresponses:
+        
+
+/products:
+  description: this is the users resource
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: datatypes.productsDataType[]
+            example: !include examples/products.json
+              
+  type:
+    mylib.collection:
+      resourcePath: products    
+  
+  is: 
+  - mylib.respoMessage:
+      
+
+
+  /{productid}:
+    description: this is users resource
+    get:
+      responses:
+       200:
+          body:
+            application/json:
+              type: datatypes.productDatatype
+              example: !include examples/product.json
+    type:
+     mylib.collection:
+      resourcePath: product           
+   
+    is: 
+    - mylib.respoMessage:
+        
+/orders:
+  description: this is users resource
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/orders.json
+  type:
+    mylib.collection:
+    resourcePath: orders     
+      
+    is: 
+    - mylib.respoMessage:
+        
+  post:
+    description: list of resource methode
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/postorders.raml
+              
+    is: 
+    - mylib.posresponses:
+  /{orderid}:
+    description: this is users resource
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/order id.json
+    type:
+      mylib.collection:
+        resourcePath: order
+
+
+    is: 
+    - mylib.respoMessage:
+
+    
+  /{orderuid}:
+    description: this is users resource
+    get:
+     responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/order uid.json
+             
+     is: 
+     - mylib.respoMessage:
+    
+    type:
+     mylib.collection:
+      resourcePath: orderuid
+/catagories:
+  description: this is users resource
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: datatypes.categoriesDatatype[]
+            example: !include examples/categories.json
+    
+    is: 
+    - mylib.respoMessage:
+ 
+  type:
+    mylib.collection:
+      resourcePath: catagories    
+
+  /{categoryid}:
+    description: this is users resource
+    get:
+     responses:
+      200:
+        body:
+          application/json:
+            type: datatypes.categoryDatatype[]
+            example: !include examples/category.json
+    is: 
+    - mylib.respoMessage:
+              
+    type:
+     mylib.collection:
+      resourcePath: catagory  
+
+
+
+  

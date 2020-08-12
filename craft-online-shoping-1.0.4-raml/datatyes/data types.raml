@@ -1,0 +1,113 @@
+#%RAML 1.0 Library
+usage: online shoppingData Types
+types:
+  UserDataType:
+    type: object
+    properties:
+      userid:
+        type: integer
+        required: false
+        example: 123
+      email:
+        type: string
+        required: true
+        example: "abc@gmail.com"      
+      date_joined:
+        type: integer
+        required: true
+        example: 123
+      type: 
+        type: integer
+        required: true
+        example: 123
+      deleted: 
+        type: boolean
+        required: true
+        example: false
+      username: 
+        type: string
+        required: true
+        example: "string"
+  UsersDataType:
+    type: object
+    properties:
+      userid:
+        type: integer
+        required: false
+        example: 123
+      email:
+        type: string
+        required: true
+        example: "abc@gmail.com"      
+      date_joined:
+        type: integer
+        required: true
+        example: 123
+      type: 
+        type: integer
+        required: true
+        example: 123
+      deleted: 
+        type: boolean
+        required: true
+        example: false
+      username: 
+        type: string
+        required: true
+        example: "string"
+  productsDataType:
+    type: object
+    properties:
+        productid: 
+          type: integer
+          required: true
+          example: 123
+        categoryid: 
+          type: integer
+          required: true
+          example: 123    
+        name: 
+          type: string
+          required: true
+        description: string
+        video_url: string
+        price: 
+          type: integer 
+          required: true
+  productDatatype:
+    type: object
+    properties:
+        productid: 
+          type: integer
+          required: true
+          example: 123
+        categoryid: 
+          type: integer
+          required: true
+          example: 123    
+        name: 
+          type: string
+          required: true
+        description: string
+        video_url: string
+        price: 
+          type: integer 
+          required: true
+  categoryDatatype:
+    type: object
+    properties:
+        categoryid: integer
+        name: string
+  categoriesDatatype:
+    type: object
+    properties:
+        categoryid: integer
+        name: string
+    
+      
+ 
+      
+      
+          
+
+      

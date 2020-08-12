@@ -1,0 +1,29 @@
+#%RAML 1.0 AnnotationTypeDeclaration
+allowedTargets: [Methods]
+properties:
+  usage:
+    description: use this annotation to understand the detail about the online shopping rest api
+  controller:
+    description: the user or the dev have to be informed about the meta data
+    properties:
+      url:
+        description: dev.icraftsoft.net is the url which is used to acess the rest api
+        default: 
+      protocol:
+        description: the rest api used http prototcol
+        default: http
+      visiblity?:
+        description: should the dev need to know the url to use the http methods of the rest api
+        type: boolean
+        default: true
+      methodUsage:
+        description: can the user have the privillage to use all http methods
+        type: boolean
+        default: false
+  
+#annotaion is a language to raml modul
+#to difine what the protocols are what http methods are used and urls used.
+#
+
+
+  

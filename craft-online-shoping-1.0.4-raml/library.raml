@@ -1,0 +1,29 @@
+#%RAML 1.0 Library
+usage: to define basic library which are used on this rest api raml sepc
+
+  
+
+
+# Extention: !include AdminEx.raml
+
+traits:
+  respoMessage: !include Traits/responses.raml
+  
+  posresponses: !include Traits/postresponses.raml
+
+securitySchemes:
+  oath: !include securityScheme.raml
+
+   
+
+
+resourceTypes:
+  collection: !include res/root resourceType.raml
+  root: !include res/admin resourceType.raml
+
+annotationTypes:
+  annotaion:  !include annotation.raml 
+
+
+
+ 
