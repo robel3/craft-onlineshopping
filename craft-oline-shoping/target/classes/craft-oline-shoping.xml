@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="d48b9238-ee98-4430-ad76-58bf18d10bc0" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="get-all-products" doc:id="2ad291cc-94a2-4003-8285-cfeebc4fda59" >
+		<http:listener doc:name="Listener" doc:id="ab801b1b-889b-4696-b5a4-8c97b78f93d0" config-ref="HTTP_Listener_config1" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="03d97509-6865-4b68-8a77-a6bd08ee2ec1" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+  [
+  {
+"productid": 0,
+"categoryid": 10,
+"name": "FZA",
+"description": "NEHA",
+"video_url": "www.craft.com",
+"price": 4414
+},
+  {
+"productid": 1,
+"categoryid": 15,
+"name": "DELL PC",
+"description": "CORE I 7",
+"video_url": "WWW.DELL.COM",
+"price": 2000
+},
+  {
+"productid": 2,
+"categoryid": 18,
+"name": "DELL PC",
+"description": "CORE I 7",
+"video_url": "WWW.DELL.COM",
+"price": 2000
+},
+  {
+"productid": 3,
+"categoryid": 20,
+"name": "ACER PC",
+"description": "CORE I 7",
+"video_url": "WWW.ACER.COM",
+"price": 500
+},
+  {
+"productid": 4,
+"categoryid": 18,
+"name": "HP PC",
+"description": "CORE I 7",
+"video_url": "WWW.HP.COM",
+"price": 350
+},
+  {
+"productid": 5,
+"categoryid": 16,
+"name": "LENOVO PC",
+"description": "CORE I 5",
+"video_url": "WWW.LENOVO.COM",
+"price": 1200
+},
+  {
+"productid": 6,
+"categoryid": 15,
+"name": "DELL PC",
+"description": "CORE I 5",
+"video_url": "WWW.DELL.COM",
+"price": 700
+},
+  {
+"productid": 8,
+"categoryid": 20,
+"name": "ACER PC",
+"description": "CORE I 7",
+"video_url": "WWW.ACER.COM",
+"price": 1500
+},
+  {
+"productid": 10,
+"categoryid": 12,
+"name": "LENOVO PC",
+"description": "CORE I 5",
+"video_url": "WWW.LENOVO.COM",
+"price": 1200
+},
+  {
+"productid": 11,
+"categoryid": 10,
+"name": "FZA",
+"description": "NEHA",
+"video_url": "www.craft.com",
+"price": 4414
+},
+  {
+"productid": 39,
+"categoryid": 10,
+"name": "frw",
+"description": "mule",
+"video_url": "max@vv.mail",
+"price": 5000
+},
+  {
+"productid": 78,
+"categoryid": 10,
+"name": "Mega mind laptop",
+"description": "explains itself",
+"video_url": "https://www.youtube.com/embed/Ic-Y3osvnFk",
+"price": 10000
+},
+  {
+"productid": 80,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "deresrt",
+"video_url": "unhs@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 88,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "deresrt",
+"video_url": "unhs@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 90,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "deresrt",
+"video_url": "unhs@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 93,
+"categoryid": 10,
+"name": "bsit",
+"description": "markting",
+"video_url": "ab@vv.mail",
+"price": 60000
+},
+  {
+"productid": 100,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 101,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 102,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 103,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 104,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 105,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 106,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 107,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 108,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 109,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 110,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 111,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 112,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 113,
+"categoryid": 11,
+"name": "aa",
+"description": "rt",
+"video_url": "ww@ef.mail",
+"price": 2300
+},
+  {
+"productid": 115,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 116,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 118,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 119,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 120,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 123,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 127,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 130,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 145,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 146,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 147,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 148,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 149,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 150,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 170,
+"categoryid": 20,
+"name": "mobilemp",
+"description": "mobilemp",
+"video_url": "ccc@vv.mail",
+"price": 500000000
+},
+  {
+"productid": 179,
+"categoryid": 20,
+"name": "mobilemp",
+"description": "mobilemp",
+"video_url": "ccc@vv.mail",
+"price": 500000000
+},
+  {
+"productid": 200,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 201,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 202,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 203,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 204,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 205,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 220,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 226,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 232,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 299,
+"categoryid": 10,
+"name": "mobilempi",
+"description": "8gbgray",
+"video_url": "www.youtube.dfhgh",
+"price": 1300
+},
+  {
+"productid": 303,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 310,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 311,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 314,
+"categoryid": 10,
+"name": "laptop",
+"description": "16gb ram 3.2mhz LED SCREEN14.5 asus",
+"video_url": "https://www.youtube.com/dgyhfh",
+"price": 20000
+},
+  {
+"productid": 399,
+"categoryid": 10,
+"name": "laptop",
+"description": "16gb ram 15 inch led screen asus",
+"video_url": "https://www.youtube.com/softone.edbg",
+"price": 5500
+},
+  {
+"productid": 565,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 566,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 999,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 2020,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 2099,
+"categoryid": 10,
+"name": "mobilempi",
+"description": "8gbgray",
+"video_url": "www.youtube.dfhgh",
+"price": 1300
+},
+  {
+"productid": 3020,
+"categoryid": 21,
+"name": "monitor",
+"description": "glossy",
+"video_url": "emu@vv.mail",
+"price": 2400
+},
+  {
+"productid": 3099,
+"categoryid": 19,
+"name": "mobile",
+"description": "8gb ram and 20gbpix camera",
+"video_url": "https://www.youtube.com/embed/Ic-Y3osvnFk",
+"price": 250
+},
+  {
+"productid": 6789,
+"categoryid": 10,
+"name": "mobilempi",
+"description": "8gbgray",
+"video_url": "www.youtube.dfhgh",
+"price": 1300
+},
+  {
+"productid": 14500,
+"categoryid": 10,
+"name": "FZA",
+"description": "NEHA",
+"video_url": "null",
+"price": 4414
+},
+  {
+"productid": 22222,
+"categoryid": 20,
+"name": "mobilemp",
+"description": "mobilemp",
+"video_url": "ccc@vv.mail",
+"price": 500000000
+},
+  {
+"productid": 111111,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 33333345,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000
+},
+  {
+"productid": 33345768,
+"categoryid": 10,
+"name": "mobilemp",
+"description": "dderesrt",
+"video_url": "sss@vv.mail",
+"price": 100000000}]
+                ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-product-byid" doc:id="6f036d52-f4c7-4e8d-85ca-3b966cca84f4" >
+		<http:listener doc:name="Listener" doc:id="13aad524-21e6-462f-b5bb-32f6d4c06abd" config-ref="HTTP_Listener_config1" path="/product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="4fb915c5-20f1-484f-8ab5-28adaf8cf31d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+                  "productid": 0,
+                  "categoryid": 10,
+                  "name": "FZA",
+                  "description": "NEHA",
+                  "video_url": "www.craft.com",
+                  "price": 4414.0
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-all-users" doc:id="37722cbb-9d8e-40e4-8f6b-77cb4f5f5c58" >
+		<http:listener doc:name="Listener" doc:id="e1a09113-e7bb-41d1-9eb4-07284ad55734" config-ref="HTTP_Listener_config1" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="2be0833b-6b16-4dc3-b4fa-3b172205ce34" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+                "email": "arege2323@gmail.com",
+                "username":"argege",
+                "userid": 3212,
+                "date_joind": 214120 ,
+                "deleted": false
+                
+              },
+              {
+                "email": "arege23@gmail.com",
+                "username":"argegeneem",
+                "userid": 32131,
+                "date_joind": 2141202 ,
+                "deleted": false
+                
+              }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-user-byid" doc:id="aeb9a083-7b22-4a0f-af05-bc2eb76aa6e4" >
+		<http:listener doc:name="Listener" doc:id="80aac44c-57c5-4946-b8a8-b02860619b54" config-ref="HTTP_Listener_config1" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="e90038f6-b9ca-49bf-9c32-597b2acce879" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+                "email": "arege2323@gmail.com",
+                "username":"argege",
+                "userid": 3212,
+                "date_joind": 214120 ,
+                "deleted": false
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="post-user" doc:id="39e2d5aa-f93c-4995-a8ad-b33808a945e0" >
+		<http:listener doc:name="Listener" doc:id="5275a061-a3ee-4bba-84e3-ff9c47e421df" config-ref="HTTP_Listener_config1" path="/postuser"/>
+		<ee:transform doc:name="Transform Message" doc:id="7ec1ebba-1ca2-4f54-aefa-04e5eca4dadf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"uid": 1547]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-all-orders" doc:id="32fa9dd3-cf25-439b-a0a8-d5daf0c8054e" >
+		<http:listener doc:name="Listener" doc:id="5cbd2c33-f8f5-47c8-b7dc-a36bb236b4ba" config-ref="HTTP_Listener_config1" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="d2d96580-2127-4120-879b-e6b70fc2b0bc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+	{
+                "ordersid": 1333,
+                "userid": 1302,
+                "addressid": 201,
+                "discountid": 1,
+                "created": "string",
+                "modified": "string",
+                "status": "Accepted",
+                "amount": 1000
+              },
+              {
+                "ordersid": 1335,
+                "userid": 1302,
+                "addressid": 201,
+                "discountid": 1,
+                "created": "string",
+                "modified": "string",
+                "status": "Accepted",
+                "amount": 1000
+              }
+              ]      
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-order-byid" doc:id="3e9215de-7807-4b82-8131-19ccc4156f00" >
+		<http:listener doc:name="Listener" doc:id="682b137f-ab15-48bd-a242-e15a69e45710" config-ref="HTTP_Listener_config1" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="15ae0d19-9e29-4c5a-b9de-17db2d2ac2b9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	 "orderid": 1333,
+                "userid": 1302,
+                "addressid": 201,
+                "discountid": 1,
+                "created": "2020-11-06",
+                "modified": "2020-11-10",
+                "status": "Accepted",
+                "amount": 1000
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="post-order" doc:id="3c1ce22e-e549-48ee-bdbe-706f88ba37cf" >
+		<http:listener doc:name="Listener" doc:id="25c82f92-f9bb-4d9c-a96a-09be8518e607" config-ref="HTTP_Listener_config1" path="/postorder"/>
+		<ee:transform doc:name="Transform Message" doc:id="58f8b1ab-b1f1-4ab2-9d85-8ad0b672b4e2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"orderid": 1234]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-all-categories" doc:id="a88059d6-189e-45e9-890f-a1a2218cb493" >
+		<http:listener doc:name="Listener" doc:id="ceaeeb13-791d-417f-aba2-72303ef90585" config-ref="HTTP_Listener_config1" path="/categories"/>
+		<ee:transform doc:name="Transform Message" doc:id="9986d04b-0290-474e-9ba5-131ef650ba17" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	 "categoryid": 100,
+    "categoryname": "electronics"
+  }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-category-byid" doc:id="4d4496b4-27c8-4213-9da8-0b60bb6d7e7d" >
+		<http:listener doc:name="Listener" doc:id="e5e8319f-1a39-4140-a9ee-41894f0adc5b" config-ref="HTTP_Listener_config1" path="category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="99906614-f97f-48b8-afcb-ee496111d9d9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	 "categoryid": 0,
+      "categoryname": "computer"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
