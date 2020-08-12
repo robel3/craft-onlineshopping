@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8915603f-337b-437c-a5d6-2bc77eef26ea" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="craft-onlineshoppingFlow" doc:id="bc3c163d-a78b-490f-842f-5b3bc18eaa2e" >
+		<http:listener doc:name="getAllproducts" doc:id="49b19b73-9c21-4dd7-b2fe-f007d196f418" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="433ac3c9-15b6-4108-90c8-f18337ba81cf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+
+      "productid": 0,
+      "categoryid": 10,
+      "name": "FZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
+   },
+      {
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   },
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow1" doc:id="0517c600-5a74-4744-918c-bda5ce886371" >
+		<http:listener doc:name="getAllproductByid" doc:id="ec3f312c-5fb0-422b-91cb-7320a9a7bd80" config-ref="HTTP_Listener_config" path="/product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="3419d882-cdf3-4542-846c-f76a37f807a3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow2" doc:id="2007a533-6d5e-4bb0-91b2-48a654667403" >
+		<http:listener doc:name="getAllusers" doc:id="0d9d4193-fd30-46b3-b12f-fef8508afb68" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="0147031a-7363-40eb-9376-234aed43cee6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	"userid": 900,
+      "email": "abcdkkk@gmail.com",},
+ {   "userid": 1000,
+      "email": "Betty@gmail.com"
+
+}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow3" doc:id="0574e5ae-4267-4d96-b48e-3c57cb8d68ba" >
+		<http:listener doc:name="PostUser" doc:id="fb7bb382-74bd-4b3d-93bf-0e6821f1aba7" config-ref="HTTP_Listener_config" path="/postUser"/>
+		<ee:transform doc:name="Transform Message" doc:id="99884ea2-2850-468a-93d0-313e40d5d680" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid": 1596
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow4" doc:id="70d23f6a-2bb8-4ccf-8d5d-e72b39afbfdd" >
+		<http:listener doc:name="getAlluserByid" doc:id="844e6f85-e64e-4ab9-990d-c4bdd4ded6ff" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="135ab2ea-8681-4e98-8fe6-1e0aefe0cbe3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"userid": 1000,
+      "email": "Betty@gmail.com"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow5" doc:id="dd1b08d8-e876-4edf-be0f-eacb0be34b9e" >
+		<http:listener doc:name="getAllcategories" doc:id="a15f4d00-73ac-4e8c-a24c-5133812a8cfa" config-ref="HTTP_Listener_config" path="/categories"/>
+		<ee:transform doc:name="Transform Message" doc:id="0700e719-a7c2-4114-835d-443d7777e7fa" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+	 {
+      "catagoryid": 0,
+      "categoryid": 10,
+      "name": "FZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
+   },
+      {
+      "productid": 1,
+      "categoryid": 15,
+      "name": "DELL PC",
+      "description": "CORE I 7",
+      "video_url": "WWW.DELL.COM",
+      "price": 2000
+   }
+
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow6" doc:id="6121598e-c86d-46ff-b125-1e7db0a59e83" >
+		<http:listener doc:name="getAllBycategoryId" doc:id="a2b31962-d94f-4dbe-a1bb-d17572d83ab7" config-ref="HTTP_Listener_config" path="/category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="d25465b0-f3d4-40fb-b2e6-b1bac4c1906f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"productid": 0,
+      "categoryid": 10,
+      "name": "FZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow7" doc:id="1b631abf-eaef-4073-895e-3a3c8989265a" >
+		<http:listener doc:name="getAllorders" doc:id="f77b9621-be26-4b3a-935b-a906f9346e28" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="25e130b1-0782-41cc-9991-c3323097b623" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	"orderid": 144,
+   "userid": 1089,
+   "addressid": 201,
+   "discountid": 1,
+   "created": 1591121384000,
+   "modified": null,
+   "status": "Accepted",
+   "amount": 1000
+
+   },
+   {
+   	"orderid": 150,
+   "userid": 1020,
+   "addressid": 201,
+   "discountid": 1,
+   "created": 1591121384000,
+   "modified": null,
+   "status": "Accepted",
+   "amount": 1000
+   }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow8" doc:id="c284028d-08bb-4237-992c-9be8f8ca2d43" >
+		<http:listener doc:name="getAllByuserid" doc:id="fbb6acb5-f4f0-43f4-9404-98e943a1e7e5" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="745712be-cc8b-4f40-8fb0-289fb59cd3b2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"orderid": 144,
+   "userid": 1089,
+   "addressid": 201,
+   "discountid": 1,
+   "created": 1591121384000,
+   "modified": null,
+   "status": "Accepted",
+   "amount": 1000
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft-onlineshoppingFlow9" doc:id="658a2472-fba4-48f6-8a52-ae63a7622926" >
+		<http:listener doc:name="PostOrder" doc:id="edd2376b-9b5b-4dd1-8d7c-15c92d41dfea" config-ref="HTTP_Listener_config" path="/postOrder"/>
+		<ee:transform doc:name="Transform Message" doc:id="bad5601a-af92-4db9-b45a-94915f20b1b4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	 "orderid": 144
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
