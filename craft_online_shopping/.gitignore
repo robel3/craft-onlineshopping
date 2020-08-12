@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # ------------------------------------------------------------------------------ #
 # Java defaults (https://github.com/github/gitignore/blob/master/Java.gitignore) #
 # ------------------------------------------------------------------------------ #
@@ -47,6 +46,3 @@ target/
 .mule/**/*
 .DS_Store
 velocity.log
-=======
-/target/
->>>>>>> Stashed changes

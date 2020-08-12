@@ -5,12 +5,12 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9c66577e-4030-4b29-a991-6c4dfaf8edfd" >
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4ea1fb33-b391-4a96-b749-a23c767989f4" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<flow name="Product" doc:id="49732f55-f48a-4b87-9b7f-41e3ee000407" >
-		<http:listener doc:name="Listener" doc:id="97f0aff5-4b8c-4507-ae18-60a003f2264c" config-ref="HTTP_Listener_config" path="/Product"/>
-		<ee:transform doc:name="Transform Message" doc:id="1974eeca-5bbf-4c12-8238-ae67866982ec" >
+	<flow name="Product" doc:id="8cb983dc-bf69-4263-81c5-b544713054f9" >
+		<http:listener doc:name="Listener" doc:id="6bdffc4a-1e32-4dba-818d-737286464f36" config-ref="HTTP_Listener_config" path="/Product"/>
+		<ee:transform doc:name="Transform Message" doc:id="c31b473b-05d4-421e-af1c-3e5a71322b95" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -35,9 +35,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="ProductbyId" doc:id="2452d99c-12e1-48c0-aea4-bb3556d8520f" >
-		<http:listener doc:name="Listener" doc:id="23aeef16-8ad4-4eae-b03d-f9369ea0b667" config-ref="HTTP_Listener_config" path="/Product/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="f020f490-036b-4991-a992-d9992327a7c0" >
+	<flow name="ProductbyId" doc:id="9736b779-c19d-4fda-a60b-83113f6f593e" >
+		<http:listener doc:name="Listener" doc:id="c91492e1-d6bb-427b-9aa7-db7c8fea66be" config-ref="HTTP_Listener_config" path="/Product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="b26cc2e6-5f57-4e57-a607-f5157bb289b9" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -53,9 +53,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="users" doc:id="006984f6-39dd-46dd-916d-4b456a689a94" >
-		<http:listener doc:name="Listener" doc:id="f5931980-0840-4e3f-b01f-ec57dafb8c5c" config-ref="HTTP_Listener_config" path="/users"/>
-		<ee:transform doc:name="Transform Message" doc:id="bc65243d-d0af-4a28-89bb-58a6c0ae1ca8" >
+	<flow name="users" doc:id="e25855f6-d6fe-467a-b725-55e761a2594d" >
+		<http:listener doc:name="Listener" doc:id="5b3d2dc4-8064-4279-9bf6-7b758a5e5806" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="8bc0dd23-fe30-4a1b-8c6d-179cf940ce7e" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -85,9 +85,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="userpost" doc:id="6e49efaa-1fd4-4e0c-abe0-ff364ef786b6" >
-		<http:listener doc:name="Listener" doc:id="3a80149f-b9a8-4fdf-b9ec-952bc6320941" config-ref="HTTP_Listener_config" path="/postuser"/>
-		<ee:transform doc:name="Transform Message" doc:id="a419e74c-2d81-4d26-bcd9-b68c97565f03" >
+	<flow name="userpost" doc:id="44a0d49e-3616-44dd-931c-7d4a1b5638f1" >
+		<http:listener doc:name="Listener" doc:id="af146bbb-ef32-40c5-86b7-a574a09e04db" config-ref="HTTP_Listener_config" path="/postuser"/>
+		<ee:transform doc:name="Transform Message" doc:id="bdded475-3cb6-4596-8a79-c6fb2133333d" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -99,9 +99,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="UserbyId" doc:id="6229578b-112a-4419-82d7-1e24ab923a70" >
-		<http:listener doc:name="UsersbyId" doc:id="d15f33df-de90-4227-8c4e-386b8a76dbf7" config-ref="HTTP_Listener_config" path="/user/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="43849b02-4502-457c-a5ca-991df8834a0f" >
+	<flow name="UserbyId" doc:id="9dcac5de-7686-4d87-9f07-cc60920c63da" >
+		<http:listener doc:name="UsersbyId" doc:id="9cc28ac7-1654-4b9c-897b-c66e839c5c22" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="f997e263-4fc3-4612-8a28-f9183c21bd82" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -120,9 +120,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="AllCaragory" doc:id="0f50d412-2833-425e-84d2-a73c92f1c0e2" >
-		<http:listener doc:name="Listener" doc:id="d28c1437-cad3-4e68-9dc2-a3101e5b0ebc" config-ref="HTTP_Listener_config" path="/category"/>
-		<ee:transform doc:name="Transform Message" doc:id="1d780f42-0d84-4594-a6b0-b25f14578c5b" >
+	<flow name="AllCaragory" doc:id="a1a45331-dcd5-4be8-b666-91c521c9c1cb" >
+		<http:listener doc:name="Listener" doc:id="0ec6bdfc-72ec-4a36-997c-593ec9231095" config-ref="HTTP_Listener_config" path="/category"/>
+		<ee:transform doc:name="Transform Message" doc:id="ae97142a-1a94-40ad-8e6f-51be00edfe60" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -144,9 +144,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="CategoryById" doc:id="93cea4b2-ab7a-42ac-9974-1981ab66da2b">
-		<http:listener doc:name="Listener" doc:id="b68f1db5-16a5-4223-befb-9e964466dca0" config-ref="HTTP_Listener_config" path="/category/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="53b56f27-aa1b-419f-b8d4-0844461459b6" >
+	<flow name="CategoryById" doc:id="aaa5adf9-eb72-4769-b475-42fe761ecf4d">
+		<http:listener doc:name="Listener" doc:id="f41b5cd9-e26c-42eb-9300-0150f8e0e754" config-ref="HTTP_Listener_config" path="/category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="02f55242-3259-4999-98ea-673a18d385ef" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -158,14 +158,14 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="OrderPost" doc:id="5dd409d5-0119-4cbb-8004-6988a9d92ad3" >
-		<http:listener doc:name="Listener" doc:id="53b66213-09d7-47db-ac45-7fa4904fa031" config-ref="HTTP_Listener_config" path="/OrderPost"/>
-		<ee:transform doc:name="Transform Message" doc:id="183eeef0-99a4-455d-a4af-783bf42c0c00" >
+	<flow name="OrderPost" doc:id="fac29973-f20e-472f-bf5c-22f08099ee91" >
+		<http:listener doc:name="Listener" doc:id="2b0cd787-8cb7-437a-ad65-65b13d1a23e3" config-ref="HTTP_Listener_config" path="/OrderPost"/>
+		<ee:transform doc:name="Transform Message" doc:id="d9ad166e-b396-4311-a6d4-870b2ea66c33" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
-<<<<<<< Updated upstream
+
 {
   "products": [
     {
@@ -175,16 +175,13 @@ output application/json
   ],
   "uid": 0
 }
-=======
-payload
->>>>>>> Stashed changes
 ]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="AllOrder" doc:id="d83a12cb-8698-43dc-8c10-1107a847848e" >
-		<http:listener doc:name="Listener" doc:id="8dec76a1-4626-4549-ac97-112d59ea12a7" config-ref="HTTP_Listener_config" path="/Orders"/>
-		<ee:transform doc:name="Transform Message" doc:id="a5dcea08-a2c4-4bc9-b969-d8e8a0fd2e0e" >
+	<flow name="AllOrder" doc:id="94c93f87-0c2d-4b8a-8580-e64f4178a557" >
+		<http:listener doc:name="Listener" doc:id="8b4dffb9-3b45-46ed-9a89-48a90298a4d9" config-ref="HTTP_Listener_config" path="/Orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="11315947-5d3e-49db-a05d-a26365b39958" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -215,9 +212,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="OrderById" doc:id="42f777ce-f0cc-4219-8cf4-a126066ca7b9" >
-		<http:listener doc:name="Listener" doc:id="f3cdf59a-dc6f-419f-9d8c-81d7a49bcd41" config-ref="HTTP_Listener_config" path="Order/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="4665c35e-db6a-498a-ab91-949c4ed39e50" >
+	<flow name="OrderById" doc:id="97851040-56a3-4629-9b45-b512e54061fc" >
+		<http:listener doc:name="Listener" doc:id="33a41784-84b5-4a45-9d45-54a9b7a3d4a6" config-ref="HTTP_Listener_config" path="Order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="cd0e73ae-268c-4ed5-93f5-8f1fb856a7bb" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
