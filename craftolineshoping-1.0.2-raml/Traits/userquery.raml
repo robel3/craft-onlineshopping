@@ -1,0 +1,19 @@
+#%RAML 1.0 Trait
+queryParameters:
+       id:
+        description:  id
+        type: integer
+        required:  false
+       fullName:
+        description:  fname and lname
+        type: string
+        enum:
+          [jedidiah, arege]
+        required: false
+       userName:
+        description: username
+        maxLength: 18
+        minLength: 3
+        required: false
+       addres:
+        default: edu

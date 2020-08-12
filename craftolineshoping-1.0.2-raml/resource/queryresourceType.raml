@@ -1,0 +1,81 @@
+#%RAML 1.0 ResourceType
+users:
+  get:
+    queryParameters:
+      id:
+        description:  id
+        type: integer
+        required:  false
+      fullName:
+        description:  fname and lname
+        type: string
+        enum:
+          [john, mike]
+        required: false
+      userName:
+        description: username
+        maxLength: 18
+        minLength: 3
+        required: false
+      addres:
+        default: john
+products:
+  get:
+    queryParameters:
+      id:
+        description:  id
+        type: integer
+        required:  false
+      fullName:
+        description:  fname and lname
+        type: string
+        enum:
+          [john, mike]
+        required: false
+      userName:
+        description: username
+        maxLength: 18
+        minLength: 3
+        required: false
+      addres:
+        default: john
+orders:
+  get:
+    queryParameters:
+      id:
+        description:  id
+        type: integer
+        required:  false
+      fullName:
+        description:  fname and lname
+        type: string
+        enum:
+          [john, mike]
+        required: false
+      userName:
+        description: username
+        maxLength: 18
+        minLength: 3
+        required: false
+      addres:
+        default: john
+catagories:
+  get:
+    queryParameters:
+      id:
+        description:  id
+        type: integer
+        required:  false
+      fullName:
+        description:  fname and lname
+        type: string
+        enum:
+          [john, mike]
+        required: false
+      userName:
+        description: username
+        maxLength: 18
+        minLength: 3
+        required: false
+      addres:
+        default: john        

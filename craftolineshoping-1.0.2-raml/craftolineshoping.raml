@@ -1,0 +1,199 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/aa221b5d-b959-4b72-94f7-bc07af51fff8/ # 
+title: crafto-line-shoping
+version:
+mediaType:
+- application/json
+protocols:
+  - http
+
+uses:
+  mylib: library.raml
+  
+/users:
+  description: this is the users resource
+  get:
+    description: users resource get http tatus code responses
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.users
+            example: !include Examples/users.json
+  type:
+    mylib.collections:
+      resourcepath: users
+  is: 
+    mylib.userquery:
+    mylib.responsemessage:
+  /{userid}:
+    description: this is the userid resource
+    get:
+      responses:
+       "200":
+         body:
+           application/json:
+             type: mylib.userid
+             example: !include Examples/userid.json
+    type:
+      mylib.collections:
+        resourcepath: userid
+    is:
+      mylib.useridquery:
+      mylib.responsemessage:
+  post:
+    description: list of post status codes
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.uerpost
+            example: !include Examples/Upost.json
+
+    is: 
+      mylib.responsemessage:
+/products:
+  description: find product resources
+  get:
+    description: get all products
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.products[]
+            example: !include Examples/products.json
+  type:
+     mylib.collections:
+        resourcepath: products         
+  is:
+    mylib.productsquery:
+    mylib.responsemessage:
+
+  /products{id}:
+    description: 
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.productid
+              example: !include Examples/productid.json
+    type:
+     mylib.collections:
+       resourcepath: products{id}
+               
+    is:
+      mylib.productsidquery:
+      mylib.responsemessage:
+/orders:
+  description: this is orders by id
+  get:
+    description: find specific order
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.orders[]
+            example: !include Examples/orders.json
+  type:
+      mylib.collections:
+        resourcePathName: orders{id}
+        resourcepath: orders{id}
+
+  is: 
+      mylib.ordersquery:
+      mylib.responsemessage:        
+
+/orders{id}:
+    description: get all orders
+    get:
+      description: find all orders
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.ordersid
+              example: !include Examples/ordersid.json
+    type:
+      mylib.collections:
+        resourcePathName: orders
+        resourcepath: orders                
+    is: 
+      mylib.responsemessage:    
+    post:
+     description: post itemstes       
+     responses:
+      200:
+        body:
+          application/json:
+            type: mylib.orderpost
+            example: !include Examples/Opost.json
+    
+      201:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Created"
+              } 
+     is: 
+      mylib.responsemessage:
+      
+/catagories:
+  description: 
+  get:
+    description: 
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.categories
+            example: !include Examples/categories.json
+  type:
+      mylib.collections:
+        resourcePathName: catagories
+        resourcepath: catagories          
+  is:
+      mylib.catagoriesquery:
+      mylib.responsemessage:
+      
+  /catagories{id}:
+    description: 
+    get:
+      description: 
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.category
+              example: !include Examples/category.json
+                
+    type:
+      mylib.collections:
+        resourcePathName: catagory id
+        resourcepath: catagories{id}    
+    is:
+      mylib.catagoriesidquery: 
+      mylib.responsemessage:
+        
+          
+              
+            
+              
+
+                                        
+              
+
+      
+
+
+
+
+
+
+
+
+
+
+  
+    

@@ -1,0 +1,33 @@
+#%RAML 1.0 Library
+usage: to define basic lib which used on this api raml specification
+types:
+  users: !include DataTypes/users.raml
+  userid: !include DataTypes/userid.raml
+  uerpost: !include DataTypes/userpost.raml
+  products: !include DataTypes/products.raml
+  productid: !include DataTypes/productid.raml
+  orders: !include DataTypes/orders.raml
+  ordersid: !include DataTypes/ordersid.raml
+  orderpost: !include DataTypes/orderpost.raml
+  category: !include DataTypes/category.raml
+  categories: !include DataTypes/categories.raml
+
+traits:
+  responsemessage: !include Traits/response.raml
+  userquery: !include Traits/userquery.raml
+  useridquery: !include Traits/useridquery.raml
+  productsquery: !include Traits/productsquery.raml
+  productsidquery: !include Traits/productidquery.raml
+  ordersquery: !include Traits/ordersquery.raml
+  ordersidquery: !include Traits/ordersidquery.raml
+  ordersuseridquery: !include Traits/orderuseridquery.raml
+  catagoriesquery: !include Traits/catagoriesquery.raml
+  catagoriesidquery: !include Traits/catagoriesidquery.raml
+resourceTypes:
+  collections: !include resource/rootresourceType.raml
+securitySchemes:
+  oath: !include securityScheme.raml
+# documentation:
+#   - !include documentation.raml
+annotationTypes:
+  annotation: !include annotation.raml
