@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="bee390d6-bf1e-4e26-8b9d-f95e5dff2d1a" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="gettingOrders" doc:id="f768ed4c-d974-4a08-91d9-21d6154ecd81" >
+		<http:listener doc:name="Listener" doc:id="520e44ae-8d2c-442a-92fd-23a4ab0e2890" config-ref="HTTP_Listener_config" path="/order"/>
+		<ee:transform doc:name="Transform Message" doc:id="321989d6-d104-4b4f-955b-834228988418" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+[{
+    "addressid": 0,
+    "amount": 0,
+    "created": "20/03/2020",
+    "discountid": 0,
+    "modified":"20/04/12",
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="gettingProduct" doc:id="19783fbc-2665-4ca3-8bd4-1d11e820c593">
+		<http:listener doc:name="Listener" doc:id="8603531e-d52d-4c6a-9c33-4e1b72694897" config-ref="HTTP_Listener_config" path="/product" />
+		<ee:transform doc:name="Transform Message" doc:id="7eb55885-c0c9-4a1c-9984-0e9afbaa67f4">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+ [
+    {
+    "productid": 1,
+    "categoryid": 10,
+    "name": "FZA",
+    "description": "NEHA",
+    "video_url": "www.craft.com",
+    "price": 4414
+    },
+    {
+    "productid": 2,
+    "categoryid": 18,
+    "name": "DELL PC",
+    "description": "CORE I7",
+    "video_url": "WWW.DELL.COM",
+    "price": 2000
+    } 
+  ]
+   
+ 
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="creatingorders" doc:id="d4c273e4-eefa-4b7d-9b76-2553e1e5e293" >
+		<http:listener doc:name="Listener" doc:id="a1f7881e-420d-44d7-a74d-343ed6f55feb" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="f8e64102-3f90-41d8-9b81-c0408f0a724f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "addressid": 0,
+    "amount": 0,
+    "created": "20/03/2020",
+    "discountid": 0,
+    "modified":"20/04/12",
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }
+  ]
+  ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="gettingOrderByid" doc:id="8a3de9b0-f583-4c75-bf32-2b19ccab8df4" >
+		<http:listener doc:name="Listener" doc:id="75f9ca97-11f4-4fa1-8137-93de0aad608f" config-ref="HTTP_Listener_config" path="/orders/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="64cb7338-f4e1-4bd9-8686-2b270e1c9286" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {
+    "addressid": 0,
+    "amount": 0,
+    "created": "20/03/2020",
+    "discountid": 0,
+    "modified":"20/04/12",
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="category" doc:id="670570ae-b266-45f7-a2be-a3fffcaced59" >
+		<http:listener doc:name="Listener" doc:id="ab61e91c-5e57-4c53-803c-0fc6832972f6" config-ref="HTTP_Listener_config" path="/catagory"/>
+		<ee:transform doc:name="Transform Message" doc:id="e0cb5285-47ee-4b7b-a714-74a7bfc83b77" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "categoryid": 0,
+    "name": "string"
+  }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="gettingProductByid" doc:id="c1f09fd4-3311-49f2-9f75-1d79326c71b7">
+		<http:listener doc:name="Listener" doc:id="fbad0698-e85d-4512-a2da-29fa446b168b" config-ref="HTTP_Listener_config" path="/products/{id}" />
+		<ee:transform doc:name="Transform Message" doc:id="389d9b62-9465-4cfa-a03c-c2f0a5d63725">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+  "categoryid": 0,
+  "description": "string",
+  "name": "string",
+  "price": 0,
+  "productid": 0,
+  "video_url": "string"
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="orderByuid" doc:id="6e78ba2c-b260-411f-ae14-888632077418" >
+		<http:listener doc:name="Listener" doc:id="a73e5a2e-f8ca-43ad-85e9-adc6622a5ae4" config-ref="HTTP_Listener_config" path="order/{uid}"/>
+		<ee:transform doc:name="Transform Message" doc:id="2025ba39-6475-425e-a42d-5e8eca56c916" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "addressid": 0,
+    "amount": 0,
+    "created": "20/03/2020",
+    "discountid": 0,
+    "modified":"20/04/12",
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="catagoryid" doc:id="f85623f9-4983-4582-99e3-ff48a156044f" >
+		<http:listener doc:name="Listener" doc:id="80299731-7a7e-41ca-a3bb-d30abab085c4" config-ref="HTTP_Listener_config" path="/catagoryid/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="f67cadcc-bc04-4c9b-ab3a-d9f5ee0f9d66" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+  {
+    "categoryid": 0,
+    "name": "string"
+  }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
