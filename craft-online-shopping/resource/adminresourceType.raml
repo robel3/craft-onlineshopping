@@ -1,0 +1,21 @@
+#%RAML 1.0 ResourceType
+delete:
+    description: 
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "message":"<<resourcePath>> resource deleted"
+              }
+get:
+  description: the resource <<resourcePathName>> not found
+  responses:
+    404:
+      body:
+        application/json:
+          example:
+            {
+              "message":"<<resourcePath>> not found"
+            }   

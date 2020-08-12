@@ -1,0 +1,254 @@
+#%RAML 1.0 Library
+usage: online shopping data types
+types:
+  AllUsersDataType:
+    description: Get all shoppers
+    type:
+      properties:
+        userid:
+          type: integer
+          required: false
+          example: 123
+        username:
+          type: string
+          required: false
+          example: "ABC"
+        email:
+          type: string
+          required: false
+          example: "abc@gmail.com"
+  UserDataType:
+    description: Get all shoppers
+    type:
+      properties:
+        userid:
+          type: integer
+          required: true
+          example: 123
+        email:
+          type: string
+          required: true
+          example: "abc@gmail.com"
+        date_joined:
+          type: integer
+          required: true
+          example: 1235456
+        modified:
+          type: integer
+          required: true
+          example: 1235456
+        type:
+          type: integer
+          required: true
+          example: 1
+        deleted:
+          type: boolean
+          required: true
+        username:
+          type: string
+          required: true
+          example: "ABC"
+  UserPostDataType:
+    description:
+    type: 
+      properties:
+        username:
+          type: string
+          required: true
+          example: "ABC"
+        email:
+          type: string
+          required: true
+          example: "abc@gmail.com"
+  AllProductsDataType:
+    description: Get all products
+    type: 
+      properties:
+        categoryid: 
+          type: integer
+          required: true
+          example: 123
+        description: 
+          type: string
+          example: "string" 
+        name:
+          type: string
+          example: "string"
+        price: 
+          type: integer
+          example: 100
+          required: true
+        productid: 
+          type: integer
+          example: 10
+          required: true
+        video_url: 
+          type: string
+          example: "string"
+  ProductDataType:
+    description: Get all products
+    type: 
+      properties:
+        categoryid: 
+          type: integer
+          required: true
+          example: 123
+        description: 
+          type: string
+          example: "string" 
+        name:
+          type: string
+          required: true
+          example: "string"
+        price: 
+          type: integer
+          example: 100
+          required: true
+        productid: 
+          type: integer
+          example: 10
+          required: true
+        video_url: 
+          type: string
+          example: "string" 
+  AllOrdersDataType:
+    description: get all orders
+    properties:
+      orderid:
+        type: integer
+        required: true
+        example: 1243
+      userid:
+        type: integer
+        required: true
+        example: 10
+      addressid:
+        type: integer
+        required: true
+        example: 10
+      discountid:
+        type: integer
+        required: true
+        example: 10
+      created:
+        type: string
+        required: true
+        example: "2020-11-06"
+      modified:
+        type: string
+        example: "2020-11-06"
+      status:
+        type: string
+        required: true
+        example: "string"
+      amount:
+        type: integer
+        required: true
+        example: 30
+  orderidDataType:
+    description: get an order
+    properties:
+      orderid:
+        type: integer
+        required: true
+        example: 1243
+      userid:
+        type: integer
+        required: true
+        example: 10
+      addressid:
+        type: integer
+        required: true
+        example: 10
+      discountid:
+        type: integer
+        required: true
+        example: 10
+      created:
+        type: string
+        required: true
+        example: "2020-11-06"
+      modified:
+        type: string
+        example: "2020-11-06"
+      status:
+        type: string
+        required: true
+        example: "string"
+      amount:
+        type: integer
+        required: true
+        example: 30
+  orderuidDataType:
+    description: get an order
+    properties:
+      orderid:
+        type: integer
+        required: true
+        example: 1243
+      userid:
+        type: integer
+        required: true
+        example: 10
+      addressid:
+        type: integer
+        required: true
+        example: 10
+      discountid:
+        type: integer
+        required: true
+        example: 10
+      created:
+        type: string
+        required: true
+        example: "2020-11-06"
+      modified:
+        type: string
+        example: "2020-11-06"
+      status:
+        type: string
+        required: true
+        example: "string"
+      amount:
+        type: integer
+        required: true
+        example: 30
+  OrdersPost:
+    description: Post all orders
+    type: 
+      properties:
+        productid:
+          type: integer
+          required: true
+          example: 123
+        quantity:
+          type: integer
+          required: true
+          example: 30
+        uid:
+          type: integer
+          required: true
+          example: 1302
+  AllCatagoriesDataType:
+    description: get all catagories
+    properties:
+      categoryid:
+        type: integer
+        required: true
+        example: 10
+      name:
+        type: string
+        required: true
+        example: "string"
+  CategoryDataType:
+    description: get all catagories
+    properties:
+      categoryid:
+        type: integer
+        required: true
+        example: 10
+      name:
+        type: string
+        required: true
+        example: "string"
+  
