@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c90ee078-4380-4b70-8758-1a5acacb8060" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="fbe948c9-baff-429e-b5b8-a9cdad8f8dcf" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="craft-helloworld2Flow" doc:id="db8b1b29-4a9c-4d3f-a663-414651cb2617" >
+		<http:listener doc:name="Listener" doc:id="09acea22-40b0-4df7-9a2c-cf5b65553960" config-ref="HTTP_Listener_config1" path="/demo1"/>
+		<set-payload value="hello world craft soft" doc:name="Set Payload" doc:id="cbdd4c91-9f33-45f3-accf-6a5ecd7c6be3" />
+		<logger level="INFO" doc:name="Logger" doc:id="8e507133-45ad-4fed-a9a4-989aa5ce1c7f" message="this is logger massages"/>
+	</flow>
+</mule>
