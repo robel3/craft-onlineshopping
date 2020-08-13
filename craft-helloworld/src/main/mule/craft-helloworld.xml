@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4ed2f262-a10d-4f4d-a5c7-915b2d7e68e6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="craft-helloworldFlow" doc:id="b12b7062-632f-4753-b5de-068a2f4baad5" >
+		<http:listener doc:name="Listener" doc:id="beeb6c05-4493-4354-86d1-3b0ed02f123c" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-payload value="Hello World" doc:name="Set Payload" doc:id="36cfe540-c8f2-4553-a2c5-6152b1c50a6b" />
+		<logger level="INFO" doc:name="Logger" doc:id="4ffc750b-3b79-45d8-99d2-a8a46433cffd" message="my logger message"/>
+	</flow>
+</mule>
