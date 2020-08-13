@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+
+-<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="46113ce1-67ac-404f-84bd-3104403f113e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow doc:id="1d98f0b3-0948-42e3-b11e-d61fce57d830" name="GetUsers-shopping-Flow">
+
+-<http:listener doc:name="Listener" doc:id="6de9c7e0-58e8-46cd-afe4-db35ac25ea96" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="9faf37c7-bf31-4895-9451-42cd09547663" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+    {
+        "userid": 900,
+        "email": "abcdkkk@gmail.com",
+        "date_joined": -1573012800000,
+        "modified": 1582747201000,
+        "type": 1,
+        "deleted": false,
+        "username": "Abc"
+    },
+    {
+        "userid": 1000,
+        "email": "Betty@gmail.com",
+        "date_joined": 1589068800000,
+        "modified": 1586044800000,
+        "type": 5,
+        "deleted": false,
+        "username": "Cristina"
+    }]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+
+
+</flow>
+	<flow name="craft-online-shoppingFlow" doc:id="6b68446d-80a0-4e71-a1a0-1bc108e35f07" >
+		<http:listener doc:name="Listener" doc:id="3e2e131a-3cb9-401a-8654-235c1f9762d1" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="d10a2318-f23f-4741-8061-afc7e806e2c4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+    {
+        "userid": 900,
+        "email": "abcdkkk@gmail.com",
+        "date_joined": -1573012800000,
+        "modified": 1582747201000,
+        "type": 1,
+        "deleted": false,
+        "username": "Abc"
+    }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+flow name="craft-online-shoppingFlow" doc:id="0383eaae-c251-47b3-a512-6da6ecee73af" >
+		<http:listener doc:name="Listener" doc:id="33e8e50a-40ee-4773-9066-b4e028014635" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="80ff7c6e-4183-43dd-b171-f82b32926835" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+    {
+        "userid": 900,
+        "email": "abcdkkk@gmail.com",
+        "date_joined": -1573012800000,
+        "modified": 1582747201000,
+        "type": 1,
+        "deleted": false,
+        "username": "Abc"
+    }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	<flow name="craft-online-shopping-Flow">
+		<http:listener doc:name="Listener" doc:id="385c3254-031a-4fc4-b273-36515502f847" config-ref="HTTP_Listener_config" path="/user"/>
+		<ee:transform doc:name="Transform Message" doc:id="838c4250-b2be-439d-9cbb-abe4b4cd1525" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid": "string"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+
+</mule>
