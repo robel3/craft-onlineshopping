@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="GetPostDemo" doc:name="HTTP Listener config" doc:id="815ce1e4-e792-4d0c-b762-88355bfecacc" >
+		<http:listener-connection host="0.0.0.0" port="9999" />
+	</http:listener-config>
+	<flow name="ragFlow" doc:id="f07940b9-7fa6-41c1-b7c2-7496f285c135" >
+		<http:listener doc:name="First Mule" doc:id="3bd63b0b-5769-49c6-bb72-6463a284259c" config-ref="GetPostDemo" path="/firstsoft" allowedMethods="GET"/>
+		<set-payload doc:name="Set Payload" doc:id="58258237-ece3-438b-a0c3-e2b363d481d3" value="Congrats for my self fot doing the first mule project, keep it up!"/>
+	</flow>
+	<flow name="ragFlow1" doc:id="d1b2cc97-6337-43c6-8121-65aded521902" >
+		<http:listener doc:name="Listener" doc:id="861d8cec-cf53-421d-9df0-c7e52a738b72" config-ref="GetPostDemo" path="/firstsoft"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="81e55592-d385-4387-9a7e-564625c84fba" />
+	</flow>
+</mule>
