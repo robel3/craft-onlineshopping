@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d805a63c-8e1b-4eb0-8afb-952f6f54284c" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="craft-helloworldFlow" doc:id="afd7c2c9-1de1-4993-9685-663d59865efe" >
+		<http:listener doc:name="Listener" doc:id="79a99076-48cb-4b26-a23a-712242f7436a" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-variable value="500" doc:name="Set Variable" doc:id="b61060f3-c32d-4f5c-8def-509a951b5da7" variableName="var1"/>
+		<remove-variable doc:name="Remove Variable" doc:id="f2ada2fe-5b5c-4682-8702-85c0f0751454" variableName="var1" />
+		<set-variable value="100" doc:name="Set Variable" doc:id="79960619-6c79-4851-92f2-7cb085751572" variableName="var2"/>
+		<set-payload value='#[vars.var2]' doc:name="Set Payload" doc:id="c146bc26-a980-4a40-b351-49769f3da705" />
+	</flow>
+</mule>
