@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="76ffdc86-2f3e-4586-8a5f-5f73c517bc7e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mycraftonlineshoppingFlow" doc:id="f945685b-6e0e-4ad3-ac56-851c2d8c6c57" >
+		<http:listener doc:name="Listener" doc:id="eb959b20-a57e-4cfc-9f82-c7ac3e6929bf" config-ref="HTTP_Listener_config" path="/mydemo"/>
+		<set-payload value="payload" doc:name="Set Payload" doc:id="0ad6409d-fdfe-4abf-b54d-673c32ff2ee1" />
+		<ee:transform doc:name="Transform Message" doc:id="6a3a5e1f-382b-4d9d-ab6b-94e42e821308" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload
+	
+	
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
