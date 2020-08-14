@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0cf3d9be-7d6f-4612-8386-89c6881e91c4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="trainFlow" doc:id="e300be14-d7c5-4f55-8830-9ff63078552b" >
+		<http:listener doc:name="Listener" doc:id="8260a64a-26b4-426c-a7d3-efe0f28857b9" config-ref="HTTP_Listener_config" path="/water"/>
+		<set-variable value="Helloo" doc:name="Set Variable" doc:id="c24e8fcc-e0bb-4d71-8acd-9db2ca44d1be" variableName="var3"/>
+		<set-variable value="world" doc:name="Set Variable" doc:id="7f973d7c-bed0-4124-892c-a26b2630d137" variableName="var4"/>
+		<ee:transform doc:name="Transform Message" doc:id="c9fbbc77-4add-4c9b-8e05-18b3b333ba25" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+vars.var3 ++""++ vars.var4]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
