@@ -1,0 +1,167 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/2ff4f583-2904-4d13-9f84-abe98bb9144a/ # 
+title: craft-online shopping
+version: 1.0
+uses:
+  mylib: library.raml
+documentation:
+  - !include documentation.raml
+mediaType: 
+- application/json
+
+/users:
+  description: this is users resourse
+  get:
+    description: this is get all users http method
+    responses:
+      200:
+        description: this is http status code responses 
+        body:
+          application/json:
+            type: mylib.users[]
+            example: !include examples/users.json
+  type:
+    mylib.server:
+      resourcePath: mylib.users
+      is:
+        mylib.query        
+  is: 
+  - mylib.responsesmassage:
+
+  /{userid}:
+    description: this is get single user resource
+    get:
+      responses:
+       200:
+         body:
+           application/json: 
+             type: mylib.user
+             example: !include examples/user.json            
+      is:
+        - mylib.query:
+        - mylib.responsesmassage:
+            
+    type:
+     mylib.server:
+      type:
+        mylib.quaryparameter:  
+            
+  post:
+    
+    responses:
+      201:
+        body:
+          application/json:
+            type: mylib.userpost
+            example: !include examples/userpost.json          
+    is: 
+    - mylib.responsesmassage:
+      mylib.query:
+      mylib.server:
+        resourcePath: mylib.user                                                                                       
+/products:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.prouducts[]
+            example: !include examples/products.json          
+  type:
+    mylib.server:
+      resourcePath: products    
+    is: mylib.responsesmassage 
+    mylib.collection:
+     mylib.query
+                           
+  /{productid}:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+
+            type: mylib.product
+            example: !include examples/product.json
+                        
+    is:
+      - mylib.query
+      - mylib.responsesmassage:
+        mylib.mylib.server:
+/categories:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.categories[]
+            example: !include examples/categories.json          
+  is: 
+    - mylib.responsesmassage:
+    - mylib.query:   
+  type:
+    mylib.server:
+     mylib. resourcePath: categories              
+  /{categoryid}:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: mylib.category
+            examples: !include examples/category.raml        
+    is: 
+    - mylib.responsesmassage:
+      mylib.query:
+      mylib.server:          
+/orders:
+  get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.orders[]
+              example: !include examples/orders.json
+  type:
+    mylib.server:
+      resourcePath: orders            
+  is: 
+  - mylib.responsesmassage:
+  - mylib.query:
+       
+  /{orderid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: mylib.order
+              examples: !include examples/order.raml
+    type:
+      mylib.server:      
+                
+    is: 
+    - mylib.responsesmassage:
+    - mylib.query:
+  post:
+      responses:
+        201:
+          body:
+            application/json:
+              type: mylib.orderpost
+              examples: !include examples/orderpostexample.raml
+                          
+      is: 
+      - mylib.responsesmassage:
+        mylib.query:
+        mylib.server:
+        resourcePath: order
+          
+          
+          
+          
+     
+                
+
+        
+
