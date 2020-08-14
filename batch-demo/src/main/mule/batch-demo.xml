@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:batch="http://www.mulesoft.org/schema/mule/batch"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="4da03119-60ae-4624-beec-e25173ba176c" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="Werktbcl1!" />
+	</db:config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e7be6dab-2447-4b21-9720-b87c7ecf1d08" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="batch-demoFlow" doc:id="a2f38e68-a8e7-429e-a1d9-0a537da74aeb" >
+		<http:listener doc:name="Listener" doc:id="97e3b0d8-c130-4e88-ba1f-305f770d964e" config-ref="HTTP_Listener_config" path="emp-apr" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="7cdc1ff6-868b-4c52-bca0-68112adbf41c" message="started flow"/>
+		<db:select doc:name="Select EMP" doc:id="e510737a-64e0-4bbe-993b-ae4eeeb77259" config-ref="Database_Config">
+			<db:sql >SELECT a.emp_id,
+a.emp_name,
+a.emp_status,
+f.emp_exp,
+f.emp_salary,
+f.emp_desq,
+f.emp_age,
+m.emp_appr_year,
+m.emp_appr_per 
+FROM onboard.emp_master a,
+	onboard.emp_appr_master m,
+	onboard.emp_fina_master f
+where f.emp_id = a.emp_id
+and a.emp_id = m.emp_id;</db:sql>
+		</db:select>
+		<batch:job jobName="batch-demo-Batch_Job" doc:id="778e84fa-38cd-4373-84c4-903d2d1231ba" blockSize="10">
+			<batch:process-records >
+				<batch:step name="Batch_Step" doc:id="5ebcdfbb-6945-4213-b063-84cc8257da29" >
+					<ee:transform doc:name="Transform Message" doc:id="8a4f718e-af0f-41d0-9b29-6a49adb89f3f">
+						<ee:message>
+							<ee:set-payload><![CDATA[%dw 2.0
+output application/java
+---
+{
+		empID: payload.emp_id,
+   empName:payload.emp_name,
+   empStatus:payload.emp_status,
+   empExp:payload.emp_exp,
+   empSalary:(payload.emp_salary + (payload.emp_salary * payload.emp_appr_per)/100),
+   empDesq:payload.emp_desq,
+   empAge:payload.emp_age,
+   empApprYear:payload.emp_appr_year,
+   empApprPer:payload.emp_appr_per
+}
+	
+]]></ee:set-payload>
+						</ee:message>
+						<ee:variables>
+						</ee:variables>
+					</ee:transform>
+					<batch:aggregator doc:name="Batch Aggregator" doc:id="648f0aef-518b-4e09-b722-4aed37cefe74" size="12">
+						<set-variable value="#[payload]" doc:name="Set Variable" doc:id="526af98a-633f-4dea-a449-b172beee4578" variableName="EmployeeList" />
+						<db:bulk-insert doc:name="Bulk insert" doc:id="ec1cd94a-1fec-455f-87bf-0517a9e468eb" config-ref="Database_Config">
+							<db:bulk-input-parameters><![CDATA[#[vars.EmployeeList]]]></db:bulk-input-parameters>
+							<db:sql>insert into onboard.emp_backup(emp_id,emp_name,emp_status,emp_exp,emp_salary,emp_desq,emp_age,emp_appr_year,emp_appr_per)values(:empID,:empName,:empStatus,:empExp,:empSalary,:empDesq,:empAge,:empApprYear,:empApprPer)</db:sql>
+						</db:bulk-insert>
+						<db:bulk-update doc:name="Bulk update" doc:id="15b3cd77-6fd1-4a9c-9fe9-837b500b0cda" config-ref="Database_Config">
+							<db:bulk-input-parameters><![CDATA[#[vars.EmployeeList]]]></db:bulk-input-parameters>
+							<db:sql>update onboard.emp_fina_master set emp_salary = :empSalary where emp_id = :empID;</db:sql>
+						</db:bulk-update>
+					</batch:aggregator>
+				</batch:step>
+			</batch:process-records>
+			<batch:on-complete >
+				<logger level="INFO" doc:name="Logger" doc:id="4eba90b8-45aa-4914-b4db-f61930750aff" message="batch job flow completed"/>
+			</batch:on-complete>
+		</batch:job>
+		<ee:transform doc:name="Transform Message" doc:id="d160bb4e-195f-4a88-89ae-882bddf8516a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"status": 200,
+	"message": "success"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="df1a67a7-b2d5-40f2-9f76-2071d13d4917" message="complete batch flow"/>
+	</flow>
+</mule>
