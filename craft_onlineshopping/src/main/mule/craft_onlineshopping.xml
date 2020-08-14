@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="2f1837c8-0369-4003-9bc2-67d19a5f2deb" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="craft_onlineshoppingFlow" doc:id="afff5877-2ec3-4ee0-b34f-b7c6e57dabb9" >
+		<http:listener doc:name="Listener" doc:id="fb6cd54c-b56d-4d82-af89-5293449226f1" path="/users" config-ref="HTTP_Listener_config1"/>
+		<ee:transform doc:name="Transform Message" doc:id="3d10cbce-1ed9-4be4-921b-5691892db1f4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "userid": 900,
+  "email": "abcdkkk@gmail.com",
+  "date_joined": -1573012800000,
+  "modified": 1582747201000,
+  "type": 1,
+  "deleted": false,
+  "username": "Abc"
+  }
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft_onlineshoppingFlow1" doc:id="b0a33038-6818-4598-a77a-b23aa77ea2cc" >
+		<http:listener doc:name="Listener" doc:id="28a9e103-1392-40c8-aeea-c3fad15c386c" path="/users/{id}" config-ref="HTTP_Listener_config1"/>
+		<ee:transform doc:name="Transform Message" doc:id="563999d3-8344-454f-bd6a-a98ac4c1ac7d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{"userid": 9,
+  "email": "abcdkkk@gmail.com",
+  "date_joined": -1573012800000,
+  "modified": 1582747201000,
+  "type": 1,
+  "deleted": false,
+  "username": "Abc"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft_onlineshoppingFlow3" doc:id="79c10959-87bd-4dd0-971a-9954cfc5f290" >
+		<http:listener doc:name="Listener" doc:id="6d259540-d8f4-4fb4-bb52-89019d7e409d" path="/products" config-ref="HTTP_Listener_config1"/>
+		<ee:transform doc:name="Transform Message" doc:id="d1a4098b-a5a9-474f-ad7b-a23519b0e8b9">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/java
+---
+[{
+	"categoryid": 0,
+	"description": "string",
+	"name": "string",
+	"price": 0,
+	"productid": 0,
+	"video_url": "string"
+}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="craft_onlineshoppingFlow2" doc:id="02252738-ab25-4886-81ae-ab9d7dd6819b" >
+		<http:listener doc:name="Listener" doc:id="5805b87f-6bd1-45d4-8cba-769044c971a2" path="/order" config-ref="HTTP_Listener_config1"/>
+		<ee:transform doc:name="Transform Message" doc:id="0b8d4c35-819f-4a39-bf4d-8db263b2a013" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+[
+    {
+    "orderid": 1333,
+    "userid": 1302,
+    "addressid": 201,
+    "discountid": 1,
+    "created": 1596410900731,
+    "modified": null,
+    "status": "Accepted",
+    "amount": 1000
+    }      
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
