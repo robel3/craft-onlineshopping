@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fcac43db-34ab-4b23-9870-2bd4b0d91f98" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="Getallproducts" doc:id="1d4a5665-e63a-4145-aaf9-2734669e73ac" >
+		<http:listener doc:name="Listener" doc:id="5fcc6ae8-f626-403e-acf0-8b3b180295d6" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="986a6af1-0e7e-464d-8759-4c454706f4c7" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	"productid":1,
+	" catagoryid":15,
+	"name":"core I 7",
+	"video_url":"www.dell.com",
+	"price":2000
+},
+
+{
+	"productid":2,
+	" catagoryid":16,
+	"name":"core I 7",
+	"video_url":"www.dell.com",
+	"price":2000
+}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetproductsbyId" doc:id="ad0de460-699a-4d4d-b0c2-01d7f117c9fd" >
+		<http:listener doc:name="Listener" doc:id="69eaa374-7b19-4661-8a45-23036613e45c" config-ref="HTTP_Listener_config" path="/produts/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="1e69397b-dd5d-4579-9470-8e3b87c7b693" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"productid":1,
+	" catagoryid":15,
+	"name":"core I 7",
+	"video_url":"www.dell.com",
+	"price":2000
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallusers" doc:id="442c2c95-227a-423e-887e-1baccb3b633c" >
+		<http:listener doc:name="Listener" doc:id="d143f2ba-87d8-4456-af5f-314a35432a64" config-ref="HTTP_Listener_config" path="users"/>
+		<ee:transform doc:name="Transform Message" doc:id="ff77f881-0a6f-4585-adeb-695b723ba21b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	"userid":900,
+	"email":"faye@hotmail.com",
+		
+	},
+	{
+		"userid":1000,
+		"email":"betty@gmail.com"
+	}
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postusers" doc:id="41086323-9f02-414d-ba80-98b4fa2b319a" >
+		<http:listener doc:name="Listener" doc:id="f4d17d22-c89b-43a1-9ce1-67bf60bd6063" config-ref="HTTP_Listener_config" path="/postuser"/>
+		<ee:transform doc:name="Transform Message" doc:id="6c102cb5-4219-4d6b-a117-a270c500af42" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid":1588
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getuserbyid" doc:id="e3e0ef28-e8fc-49b9-8fa2-fc4ab879e4c8" >
+		<http:listener doc:name="Listener" doc:id="faa84364-635f-4935-be28-7a520617dce1" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="0b82e42d-5c03-498b-91ef-a871200984bb" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"username":"john",
+	"email":"faye@hotmail.com"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallCatagory" doc:id="b2e8917f-57e9-4871-9eab-c53d5a0eeed5" >
+		<http:listener doc:name="Listener" doc:id="cff2d5b6-1b90-4ad6-a10d-9cf354f36dde" config-ref="HTTP_Listener_config" path="/catagories"/>
+		<ee:transform doc:name="Transform Message" doc:id="c0182838-5194-499c-a693-a7c205b7984f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+    "categoryid": 0,
+    "name": "string"
+  },
+  {
+  	
+    "categoryid": 5,
+    "name": "string"
+  
+  }
+  ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetcatgorybyId" doc:id="90e4af53-7cf6-459d-bfff-5e0041812986" >
+		<http:listener doc:name="Listener" doc:id="24cbfad9-6851-4bf7-9182-14e351e52b60" config-ref="HTTP_Listener_config" path="/catagory/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="70017e14-8a6d-4a56-9839-c8e089c94945" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"categoryid": 55,
+    "name": "string"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallOrders" doc:id="fe57ce2e-1ba3-4b29-bc9b-3d0995e46667" >
+		<http:listener doc:name="Listener" doc:id="e4ee2537-5351-4204-a191-cc6eb21d2d33" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="8ef0581d-788c-4f2a-a382-5ec10043494e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "addressid": 0,
+    "amount": 0,
+    "created": {
+      "date": 0,
+      "day": 0,
+      "hours": 0,
+      "minutes": 0,
+      "month": 0,
+      "nanos": 0,
+      "seconds": 0,
+      "time": 0,
+      "timezoneOffset": 0,
+      "year": 0
+    },
+    "discountid": 0,
+    "modified": {
+      "date": 0,
+      "day": 0,
+      "hours": 0,
+      "minutes": 0,
+      "month": 0,
+      "nanos": 0,
+      "seconds": 0,
+      "time": 0,
+      "timezoneOffset": 0,
+      "year": 0
+    },
+    "orderid": 0,
+    "status": "string",
+    "userid": 0
+  }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getordersbyID" doc:id="bc1bd489-5455-49e9-a743-933b9ba0a80f" >
+		<http:listener doc:name="Listener" doc:id="445669df-a76f-40b7-9637-2766e11b4efa" config-ref="HTTP_Listener_config" path="/orders/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="df9dfe15-d45b-481c-8546-f4bccaabc194" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "addressid": 0,
+  "amount": 0,
+  "created": {
+    "date": 0,
+    "day": 0,
+    "hours": 0,
+    "minutes": 0,
+    "month": 0,
+    "nanos": 0,
+    "seconds": 0,
+    "time": 0,
+    "timezoneOffset": 0,
+    "year": 0
+  },
+  "discountid": 0,
+  "modified": {
+    "date": 0,
+    "day": 0,
+    "hours": 0,
+    "minutes": 0,
+    "month": 0,
+    "nanos": 0,
+    "seconds": 0,
+    "time": 0,
+    "timezoneOffset": 0,
+    "year": 0
+  },
+  "orderid": 0,
+  "status": "string",
+  "userid": 0
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postorder" doc:id="d59e9558-e4ad-42d9-aafe-a8d255e61b9c" >
+		<http:listener doc:name="Listener" doc:id="554906c7-7f40-4b4e-87a9-60d45c29c659" config-ref="HTTP_Listener_config" path="/postorder"/>
+		<ee:transform doc:name="Transform Message" doc:id="0b79b99e-08e8-45d5-9efb-ab638eeeff65" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"orderid":7852
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
