@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6c60a751-ba5c-4f8d-8371-10215163dd4b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="getallproducts" doc:id="82824488-47dd-4a20-bce9-439903c95777" >
+		<http:listener doc:name="Listener" doc:id="8cc6c649-546e-4fd3-baf1-82d8962f9306" path="/products" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Transform Message" doc:id="d9978afa-f1cc-4a96-a87e-7746282c598e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+	[
+    {
+        "productid": 0,
+        "categoryid": 10,
+        "name": "FZA",
+        "description": "NEHA",
+        "video_url": "www.craft.com",
+        "price": 4414.0
+    },
+    {
+        "productid": 1,
+        "categoryid": 15,
+        "name": "DELL PC",
+        "description": "CORE I 7",
+        "video_url": "WWW.DELL.COM",
+        "price": 2000.0
+    },
+    {
+        "productid": 2,
+        "categoryid": 18,
+        "name": "DELL PC",
+        "description": "CORE I 7",
+        "video_url": "WWW.DELL.COM",
+        "price": 2000.0
+    }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getproductsbyid" doc:id="692819cd-bc23-4ed1-81b3-b3584c4f32ee" >
+		<http:listener doc:name="Listener" doc:id="47757aa3-a91b-462d-bf82-6f042cfb3b88" config-ref="HTTP_Listener_config" path="/product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="6b32ebc9-3ec3-4cac-b39f-b2f9cf6c4029" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+        "productid": 0,
+        "categoryid": 10,
+        "name": "FZA",
+        "description": "NEHA",
+        "video_url": "www.craft.com",
+        "price": 4414.0
+    }
+    ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallusers" doc:id="e59c8594-b97f-4957-b9dd-2466d90a37c6" >
+		<http:listener doc:name="Listener" doc:id="ae51a405-4a8c-4c94-85c7-f4a03569cefa" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="9eb530d0-50a1-4be3-b09f-9d294a132dc3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+    {
+        "userid": 900,
+        "email": "abcdkkk@gmail.com",
+        "date_joined": -1573012800000,
+        "modified": 1582747201000,
+        "type": 1,
+        "deleted": false,
+        "username": "Abc"
+    },
+    {
+        "userid": 1000,
+        "email": "Betty@gmail.com",
+        "date_joined": 1589068800000,
+        "modified": 1586044800000,
+        "type": 5,
+        "deleted": false,
+        "username": "Cristina"
+    },
+    {
+        "userid": 1001,
+        "email": "tome_same123@gmail.com",
+        "date_joined": 1600341731000,
+        "modified": 1495841175000,
+        "type": 7,
+        "deleted": false,
+        "username": "Tome Same"
+    }
+    
+    ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postuser" doc:id="804ea370-e32a-45fc-a8bc-5df9ee8a4596" >
+		<http:listener doc:name="Listener" doc:id="f4ce31a2-2a99-448a-b999-66e557a7281b" config-ref="HTTP_Listener_config" path="/postuser"/>
+		<ee:transform doc:name="Transform Message" doc:id="cf1162de-bd28-45f5-af77-46d042130d85" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid": 1234
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getuserbyid" doc:id="5c99cbc1-6f50-49e7-97f9-87ab90f71631" >
+		<http:listener doc:name="Listener" doc:id="3f90345d-c72c-48b7-b145-3f2da2c53d5a" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="fcad3d49-b1ca-4592-9163-b22ee45d167a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+	{
+    "username": "gashaw",
+    "email": "gashaw@gmail.com"
+
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallcategories" doc:id="298b2093-1473-4d89-a571-1b76bba0edc1" >
+		<http:listener doc:name="Listener" doc:id="7d20ca2a-1785-4671-b726-8cd2c470d9bb" config-ref="HTTP_Listener_config" path="/categories"/>
+		<ee:transform doc:name="Transform Message" doc:id="c85bd15b-5f9c-4d0c-97f3-9c397b8d8266" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+    {
+        "categoryid": 10,
+        "name": "labtop"
+    },
+    {
+        "categoryid": 11,
+        "name": "laptops"
+    },
+    {
+        "categoryid": 12,
+        "name": "home electronics"
+    },
+    {
+        "categoryid": 13,
+        "name": "mouse"
+    },
+    {
+        "categoryid": 14,
+        "name": "mobile accesories"
+    },
+    {
+        "categoryid": 15,
+        "name": "laptop skins"
+    }
+    
+    ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getcategorybyid" doc:id="7e09b71c-cc52-44bd-abb2-c2bb3b653399" >
+		<http:listener doc:name="Listener" doc:id="f8d81f67-345f-4b98-98c5-8f9ffa149674" config-ref="HTTP_Listener_config" path="category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="48924901-7487-485f-80fb-1ef0333ae863" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+    {
+        "categoryid": 10,
+        "name": "labtop"
+    }
+    ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getallorders" doc:id="52b880a6-9891-4384-9a3d-759b2c94e252" >
+		<http:listener doc:name="Listener" doc:id="174bb276-01f2-401c-9d1b-88b6670a68ce" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="880b8c74-e732-4cb4-ae4f-68579bdf6f67" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+	{
+	"orderid": 144,
+    "userid": 1089,
+    "addressid": 201,
+    "discountid": 1,
+    "created": 1591121384000,
+    "modified": null,
+    "status": "Accepted",
+    "amount": 1000.0
+},
+{
+    "orderid": 145,
+    "userid": 1128,
+    "addressid": 201,
+    "discountid": 1,
+    "created": 1591253213000,
+    "modified": null,
+    "status": "Accepted",
+    "amount": 1000.0
+}
+
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getorderbyid" doc:id="dd3c5bea-bcb0-423c-9a06-b4265a96441d" >
+		<http:listener doc:name="Listener" doc:id="ef56a528-6227-48ed-8ae2-c01aede51959" config-ref="HTTP_Listener_config" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="872f6042-bc61-46d8-b465-95b8a27067b5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+	{
+    "orderid": 144,
+    "userid": 1089,
+    "addressid": 201,
+    "discountid": 1,
+    "created": 1591121384000,
+    "modified": null,
+    "status": "Accepted",
+    "amount": 1000.0
+  
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postorder" doc:id="31894d9d-5d52-4b9a-bcc3-311e2342ccaa" >
+		<http:listener doc:name="Listener" doc:id="0e67a3af-1ba5-4304-aaa3-0b4a54c2e23f" config-ref="HTTP_Listener_config" path="/postorder"/>
+		<ee:transform doc:name="Transform Message" doc:id="9326bf16-e4a2-4db2-862d-1cdac675f7c5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid":12345
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
