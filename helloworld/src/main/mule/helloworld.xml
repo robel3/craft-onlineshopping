@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="28db937c-7a49-4da4-af8b-ea61effad12b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="helloworldFlow" doc:id="d270206c-d260-47fe-a8ad-de3849984e96" >
+		<http:listener doc:name="Listener" doc:id="b7d9ffe5-4354-410c-9cb3-e712dba7bca8" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-payload value="craftsoft 2020 batch good luck" doc:name="Set Payload" doc:id="0567de8b-532e-4e19-8140-b54aeb5685fe" />
+		<logger level="INFO" doc:name="Logger" doc:id="eed8e0cc-e355-4f18-8ecf-0b0813e6a3a9" message="my logger message one"/>
+	</flow>
+</mule>
