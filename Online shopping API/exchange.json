@@ -1,0 +1,6 @@
+{
+  "main": "online-shopping-api.raml",
+  "name": "Online shopping API",
+  "classifier": "raml",
+  "tags": []
+}

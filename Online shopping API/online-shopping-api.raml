@@ -1,0 +1,146 @@
+#%RAML 1.0
+title: Online shopping API
+version: 1
+types:
+  user: !include datatypes/user.raml 
+  product: !include datatypes/product.raml
+  orders: !include datatypes/orders.raml
+  category: !include datatypes/category.raml
+traits:
+  respomessage: !include trait.raml
+securitySchemes:
+  oauth: !include securityScheme.raml
+documentation:
+  - !include documentation.raml
+resourceTypes:
+  colle: !include res/rootreso.raml
+/users:
+  description: this is the users resources
+  get:
+    description: users resource get http status code response
+    responses:
+      200:
+        body:
+          application/json:
+            type: user []
+            example: !include examples/users.json
+  is: [respomessage]
+  type:
+    colle:
+      resourcepathname: user
+      resourcepath: user
+
+  /{userid}:
+    get:
+      description: get user using user id
+      responses:
+        200:
+          body:
+            application/json:
+              type: user
+              example: !include examples/user.json 
+                
+    is: [respomessage]
+    type:
+      colle:
+        resourcepathname: user
+        resourcepath: user
+  post:
+    description: user created
+    body:
+      application/json:
+        example: !include examples/postuinput.json
+         
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "userid": 999,
+                }
+      201:
+        body:
+          application/json:
+            example:
+               "message": "Created" 
+    is:  [respomessage]
+    
+/products:
+  description: get all products
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: product []
+            example: !include examples/products.json
+    is: [respomessage] 
+  /{Productid}:
+    description: get product using product id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: product
+              example: !include examples/product.json
+                      
+/orders:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: orders[]
+            example: !include examples/orders.json
+    is: [respomessage]  
+
+  /{Orderid}:
+    description: get order using order id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: orders
+              example: !include examples/order.json 
+              
+      is: [respomessage]
+  /{orderUid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: orders
+              example: !include examples/order.json
+      is: [respomessage]
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/orderpostres.json
+              
+    is: [respomessage]
+
+/Categories: 
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: category []
+            example: !include examples/categories.json
+    is: [respomessage]
+  /{Categoryid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: category
+              example: !include examples/category.json
+      is: [respomessage]
+         

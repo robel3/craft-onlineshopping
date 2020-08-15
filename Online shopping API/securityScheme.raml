@@ -1,0 +1,28 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 1.0
+description: this security support oauth 1.0 security
+describedBy:
+  headers:
+    Authorization: 
+     description: user have to use token to access any resource
+     type: string
+  queryParameters:
+   access token:
+     description: user should send valid token with   queryparameter
+     type: string
+  responses:
+    401:
+      body:
+        application/json:
+          example:
+            { 
+            message: "bad or expierd token used"
+            }
+    403:
+      body:
+        application/json:
+          example:
+            {
+              message:" not allowed"
+            }
+    

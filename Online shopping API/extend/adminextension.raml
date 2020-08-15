@@ -1,0 +1,66 @@
+#%RAML 1.0 Extension
+extends: ../online-shopping-api.raml
+resourceTypes:
+  collection: !include ../res/admresourceType.raml
+/adminuser:
+  type:
+    collection:
+      resourcePathName: user
+      resourcePath: user
+        
+       
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+
+    
+/adminproduct:
+  type:
+    collection:
+      resourcePathName: product
+      resourcePath: product
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+/adminorder:
+  get:
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+/admincateory:
+  get:
+  post:
+  put:
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "Message": "resource deleted"
+              }
+
+
