@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="67f02682-309a-4cd3-bcc0-2b7df52aee8b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="getAllProducts" doc:id="b9de7a8c-95a8-48f9-88f4-14481d652a56" >
+		<http:listener doc:name="Listener" doc:id="5c4bc42b-ecb2-489e-8ea9-b20d3b2d3c4f" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="bb7b21c1-bab8-4f6a-be04-fc2cfb9adc65" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+
+	[
+        {
+          "productid": 0,
+          "categoryid": 10,
+          "name": "FZA",
+          "description": "NEHA",
+          "video_url": "www.craft.com",
+          "price": 4414.0
+        },
+        {
+          "productid": 0,
+          "categoryid": 10,
+          "name": "FZA",
+          "description": "NEHA",
+          "video_url": "www.craft.com",
+          "price": 4414.0
+        }
+      ]
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getProductById" doc:id="be15961e-a4d6-4702-84fe-bd228a2bf4bc" >
+		<http:listener doc:name="Listener" doc:id="35b71923-6d61-4558-b400-1da7796a9944" config-ref="HTTP_Listener_config" path="/product/{pid}"/>
+		<ee:transform doc:name="Transform Message" doc:id="89c219b7-3d35-4763-a45f-9c908d417f2a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	  "productid": 1,
+	  "categoryid": 10,
+	  "name": "FZA",
+	  "description": "NEHA",
+	  "video_url": "www.craft.com",
+	  "price": 4414.0
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getAllUsers" doc:id="995cf59d-2b20-4e20-9ecc-288477faec9f" >
+		<http:listener doc:name="Listener" doc:id="b084efa8-a100-4a6c-b758-6be614684dcf" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="88f351bc-f83c-4fab-9b37-8616abbf5d25" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	"userid": 900,
+    "email": "abcdkkk@gmail.com",
+    "date_joined": 1573,
+    "modified": 1582,
+    "type": 1,
+    "deleted": false,
+    "username": "Abc"
+    },
+    
+   { 
+	   "userid": 900,
+	    "email": "abcdkkk@gmail.com",
+	    "date_joined": 1573,
+	    "modified": 1582,
+	    "type": 1,
+	    "deleted": false,
+	    "username": "Abc"
+	}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getUserById" doc:id="9deeb0e9-4530-4d93-99c8-b4ede588209c" >
+		<http:listener doc:name="Listener" doc:id="1b8e986a-20ff-41cf-aaab-c375ba4bd342" config-ref="HTTP_Listener_config" path="/user/{uid}"/>
+		<ee:transform doc:name="Transform Message" doc:id="af3fd41c-4c80-4536-9dec-a5496448c4d2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"userid": 900,
+    "email": "abcdkkk@gmail.com",
+    "date_joined": 1573,
+    "modified": 1582,
+    "type": 1,
+    "deleted": false,
+    "username": "Abc"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="postUser" doc:id="96b7a2d4-c06c-4df2-8951-ff1d60e26f53" >
+		<http:listener doc:name="Listener" doc:id="9264c4b6-ac2b-47fb-8c80-0847f8187f84" config-ref="HTTP_Listener_config" path="/postUser"/>
+		<ee:transform doc:name="Transform Message" doc:id="51334e88-9ce1-4116-ae4e-bf87b2cd41a4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"uid":1234
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
