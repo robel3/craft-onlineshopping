@@ -5,19 +5,19 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2f435f51-3dea-4242-a696-d1aad245289f" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0b03caa6-cc82-40fb-95a1-e01dc8c38dec" >
+		<http:listener-connection host="localhost" port="8081" />
 	</http:listener-config>
-	<flow name="get-all-users" doc:id="4b21c3a3-7e4b-4faa-9164-672cc8d8bd2f" >
-		<http:listener doc:name="Listener" doc:id="29324e66-99b3-4182-a4a5-8deada8700c2" path="/users" config-ref="HTTP_Listener_config"/>
-		<ee:transform doc:name="Transform Message" doc:id="105c9232-19e2-4059-b842-11ed6a1bc474" >
+	<flow name="get-all-users" doc:id="6116788b-e3e3-467b-94b4-9c25d5698256" >
+		<http:listener doc:name="Listener" doc:id="84551529-9532-4aa2-b015-b15cccb60cc7" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="de0e8650-9dc6-4503-9301-13c46b3a24fb" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
 [ 
               {
-    "userid": 1026,
+    "user-id": 1026,
     "email": "test@soap1.com",
     "date_joined": 159040000,
     "modified": 15904,
@@ -32,47 +32,47 @@ output application/json
     "modified": 15904,
     "type": 1,
     "deleted": false,
-    "user name": "popo"
+    "user-name": "popo"
   }
               ]]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-user-by-id" doc:id="1677e5d8-713e-476c-96cc-7b01598b37be" >
-		<http:listener doc:name="Listener" doc:id="8d5fb88f-3773-42b8-901d-1867d0b99550" path="user/{id}" config-ref="HTTP_Listener_config"/>
-		<ee:transform doc:name="Transform Message" doc:id="a30df61e-e1b3-48c5-8839-9384f2417534" >
+	<flow name="get-user-by-id" doc:id="bb269d78-775e-4bfe-86aa-a17fc162b741" >
+		<http:listener doc:name="Listener" doc:id="11f2bcdb-aa21-4c9f-b2c6-2bbdd9f07c48" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="8b92460c-0359-4ada-9706-a4540764baa6" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
-{
-    "user-id": 1027,
-    "email": "test@soap2.com",
-    "date_joined": 15900000,
+     {
+    "user-id": 1026,
+    "email": "test@soap1.com",
+    "date_joined": 159040000,
     "modified": 15904,
     "type": 1,
     "deleted": false,
-    "user name": "popo"
+    "user-name": "popo"
   }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="post-user" doc:id="8782eb63-7110-440f-b7de-64b372cbc104" >
-		<http:listener doc:name="Listener" doc:id="0c21f537-5dc6-4a6f-b21b-43f31d4a174f" path="/postuser" config-ref="HTTP_Listener_config"/>
-		<ee:transform doc:name="Transform Message" doc:id="be640c01-989e-4881-a676-d9c294f0c03f" >
+	<flow name="post-user" doc:id="833f4bd2-b85e-48fb-8717-82e6af5cf0a6" >
+		<http:listener doc:name="Listener" doc:id="2d3dc660-42ce-4a69-8b36-45deea2e63dd" path="/postuser" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Transform Message" doc:id="4ac219ae-3cb5-4b02-8254-a691039a92fb" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
 {
-	"u-id": 1234
+	"u-id": 2345
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-all-products" doc:id="4bd25236-0d60-4d8d-a9e2-93741c0b8fcd" >
-		<http:listener doc:name="Listener" doc:id="21e3673f-2b64-4767-8232-52b726c28034" config-ref="HTTP_Listener_config" path="/products"/>
-		<ee:transform doc:name="Transform Message" doc:id="506dc19b-a51a-4b5f-9bf4-05763d8949a2" >
+	<flow name="get-all-products" doc:id="a632c97b-2b26-46e0-acf3-81e20721b243" >
+		<http:listener doc:name="Listener" doc:id="e8ade5b8-be00-4292-a0ff-9e312207cd05" config-ref="HTTP_Listener_config" path="products"/>
+		<ee:transform doc:name="Transform Message" doc:id="7697fc1f-07dc-4210-98ed-ff344d0639db" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -96,27 +96,27 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-product-by-id" doc:id="78b5e200-a5d8-4555-ba92-ca0be13423b9" >
-		<http:listener doc:name="Listener" doc:id="79b4682f-3cba-4e85-8336-c8b6e83a0ec9" config-ref="HTTP_Listener_config" path="product/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="fa29e9bf-44a1-431c-bf87-d79aa560e3e9" >
+	<flow name="get-product-by-id" doc:id="fef1d659-f8d4-4a4a-93b3-1d8931adf169" >
+		<http:listener doc:name="Listener" doc:id="cfde442c-9dba-4f0f-a408-a7656a4d19f2" config-ref="HTTP_Listener_config" path="/product/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="6093e99e-a9f4-46ae-b44f-42c9e15afbd1" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
 {
-      "product-id": 11,
-      "category-id": 15,
-      "name": "DELL PC",
-      "description": "CORE I 7",
-      "video_url": "WWW.DELL.COM",
-      "price": 2500
+      "product-id": 10,
+      "category-id": 100,
+      "name": "bZA",
+      "description": "NEHA",
+      "video_url": "www.craft.com",
+      "price": 4414
    }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-all-categories-" doc:id="4b23bf3d-4f45-4133-812d-d143aa949927" >
-		<http:listener doc:name="Listener" doc:id="2e0f6d5a-71a2-48cf-8614-2a0bf783554b" config-ref="HTTP_Listener_config" path="/categories"/>
-		<ee:transform doc:name="Transform Message" doc:id="21a56269-70c5-4d19-9601-23264f19db14" >
+	<flow name="get-all-categories" doc:id="be66b92c-7445-493e-9457-fb2eb2777fed" >
+		<http:listener doc:name="Listener" doc:id="823a986b-66a6-4835-b08f-c43736c8e8c8" config-ref="HTTP_Listener_config" path="/categories"/>
+		<ee:transform doc:name="Transform Message" doc:id="458a81a9-dab7-474d-a155-fe03f739abbc" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -137,9 +137,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-category-by-id" doc:id="17d90224-c48c-4dbb-bc43-5f943f9459bb" >
-		<http:listener doc:name="Listener" doc:id="c952c68f-9cf2-4fd3-bcea-f6716843afee" config-ref="HTTP_Listener_config" path="/category/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="67c14836-92a7-4375-b7ee-006a10ea4690" >
+	<flow name="get-category-by-id" doc:id="b4264a82-7956-4758-b957-ee0bb2af3db5" >
+		<http:listener doc:name="Listener" doc:id="76f8b3ef-6150-4402-a2ce-847bed41a334" config-ref="HTTP_Listener_config" path="/category/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="7a68db21-83aa-4d7c-8bed-5b989c516152" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -152,9 +152,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-all-orders" doc:id="896b5c9c-a2c4-48a2-823d-166b6b57111b" >
-		<http:listener doc:name="Listener" doc:id="bd8e13aa-c3c5-4867-9a5c-ffc0a828beee" config-ref="HTTP_Listener_config" path="/orders"/>
-		<ee:transform doc:name="Transform Message" doc:id="4ca4966c-f35c-45c0-9571-dbefca8c17a8" >
+	<flow name="get-all-orders" doc:id="ff514f2c-a78b-44b8-8c11-2ad96c5d345f" >
+		<http:listener doc:name="Listener" doc:id="eaafaa7c-ef4c-4948-94bc-c69106fb3e40" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="21ab96a9-e76b-4477-9ae4-1d3d8521fa06" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -166,7 +166,7 @@ output application/json
                 "discount-id": 3000,
                 "modified": 1589,
                 "order-id": 123,
-                "status": "new",
+                "status": "ok",
                 "user-id": 1324
               },
             {
@@ -176,41 +176,41 @@ output application/json
                 "discount-id": 100,
                 "modified": 158,
                 "order-id": 133,
-                "status": "used",
+                "status": "ok",
                 "user-id": 1000
             }]]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="get-order-by-id" doc:id="f477efbb-eec4-464d-a551-542d31672420" >
-		<http:listener doc:name="Listener" doc:id="7ac3ca3a-e839-4152-bba3-178eff36b10a" config-ref="HTTP_Listener_config" path="/order/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="ee088fed-55d7-476e-853e-13f65f9980ba" >
+	<flow name="get-order-by-id" doc:id="dddfa26b-a99c-4ed6-830b-07ce21d499c7" >
+		<http:listener doc:name="Listener" doc:id="3b112d57-fa9c-4379-90e2-ba872e44709d" config-ref="HTTP_Listener_config" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="07ff7782-986a-4451-89ba-493db08725f5" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
 {
-                "address-id": 1234,
+                "address-id": 15890,
                 "amount": 1586,
-                "created": 1516,
-                "discount-id": 10,
-                "modified": 1500,
+                "created": 15890,
+                "discount-id": 3000,
+                "modified": 1589,
                 "order-id": 123,
-                "status": "new",
+                "status": "ok",
                 "user-id": 1324
               }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="post-order" doc:id="9ca8e5da-9a81-4240-bb0a-0cef07d9ee25" >
-		<http:listener doc:name="Listener" doc:id="61c00eff-726c-4fba-8972-172825a49470" config-ref="HTTP_Listener_config" path="/postorder"/>
-		<ee:transform doc:name="Transform Message" doc:id="df3a2e5e-d595-4b67-aedb-ccb61228f5a7" >
+	<flow name="post-order" doc:id="edb2b3f3-4f3d-498d-9d59-ba6b40adab2b" >
+		<http:listener doc:name="Listener" doc:id="aafff640-fde1-4f6d-8919-582c3505bda7" config-ref="HTTP_Listener_config" path="/postorder"/>
+		<ee:transform doc:name="Transform Message" doc:id="aff6798d-901c-4aa9-82f6-5a17afac9b00" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
 {
-	"o_id": 4567
+	"o-id": 246
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
