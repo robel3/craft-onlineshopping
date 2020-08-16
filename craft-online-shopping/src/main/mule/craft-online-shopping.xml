@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6cf74335-79d9-4568-a168-a5545d215556" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="GetUsers-shopping-Flow" doc:id="d50b918a-fa08-4415-9917-ef90d90d14d9" >
+		<http:listener doc:name="Listener" doc:id="1922618a-f697-4f32-a8a6-f9fde926875d" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="ab7e0d53-e605-422b-84af-3aa599d1d44e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+    "userid": 900,
+    "email": "abcdkkk@gmail.com",
+    "date_joined": 1573,
+    "modified": 1582,
+    "type": 1,
+    "deleted": false,
+    "username": "Abc"
+    },
+    {
+    "userid": 900,
+    "email": "abcdkkk@gmail.com",
+    "date_joined": 1573,
+    "modified": 1582,
+    "type": 1,
+    "deleted": false,
+    "username": "Abc"
+    }]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="Getuserbyid-craft-online-shopping-Flow" doc:id="863f1b9f-9cde-4eb0-b160-931ba224e68b" >
+		<http:listener doc:name="Listener" doc:id="020a7c4d-0c63-4440-aca1-aec0adad9886" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="75cc208b-84ba-4161-991f-cb1fcec96769" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "userid": 900,
+    "email": "abcdkkk@gmail.com",
+    "date_joined": 1573,
+    "modified": 1582,
+    "type": 1,
+    "deleted": false,
+    "username": "Abc"
+    }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="PostUser-craft-online-shopping-Flow" doc:id="60e3ce37-5c39-4270-aa9b-be7961325689" >
+		<http:listener doc:name="Listener" doc:id="079c8c24-dceb-4bc8-b820-d764a9ace0bd" config-ref="HTTP_Listener_config" path="/user"/>
+		<ee:transform doc:name="Transform Message" doc:id="53aec6ad-77a0-45be-aae1-f62098f8e8b5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "uid": 1533
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetProducts-online-shopping-Flow" doc:id="74a40053-85d5-4cdd-8452-a53ffb932f42" >
+		<http:listener doc:name="Listener" doc:id="29023e9d-7ade-4c99-bab1-5957be7b0058" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="e9d87608-343f-4c2f-ab79-5bb0b81ee699" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+[
+    {
+        "productid": 0,
+        "categoryid": 10,
+        "name": "FZA",
+        "description": "NEHA",
+        "video_url": "www.craft.com",
+        "price": 4414.0
+    },
+    {
+        "productid": 1,
+        "categoryid": 15,
+        "name": "DELL PC",
+        "description": "CORE I 7",
+        "video_url": "WWW.DELL.COM",
+        "price": 2000.0
+    }
+    
+    ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetProductbyid-online-shopping-Flow" doc:id="8dc96def-033b-4345-8f73-50a02e7d929d" >
+		<http:listener doc:name="Listener" doc:id="2f754a4e-ee27-43dc-9c1c-abffef2edfc6" config-ref="HTTP_Listener_config" path="/products/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="a2d0a26b-6fd1-44eb-963d-ab7b7c0cd8a7" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetOrders-craft-online-shopping-Flow" doc:id="2e82cb4c-8d67-43fa-ba13-73656ab1674e" >
+		<http:listener doc:name="Listener" doc:id="4ab9c00f-b0ab-4374-984e-8c1f6f8b6be0" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="e276f38b-6255-4ce8-a14b-c3f1f1c9ed54" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+    {
+        "orderid": 1243,
+        "userid": 1302,
+        "addressid": 201,
+        "discountid": 1,
+        "created": 1594166394000,
+        "modified": null,
+        "status": "Shipment Completed",
+        "amount": 1000.0
+    },
+    {
+        "orderid": 1331,
+        "userid": 1302,
+        "addressid": 201,
+        "discountid": 1,
+        "created": 1596410736000,
+        "modified": null,
+        "status": "Accepted",
+        "amount": 1000.0
+    }]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="Getorderid-craft-online-shopping-Flow" doc:id="8153c3fd-b9cc-4632-bc1d-fe459e77c65c" >
+		<http:listener doc:name="Listener" doc:id="93d82893-7508-4cc2-ad15-1a3c23c658eb" config-ref="HTTP_Listener_config" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="8284029d-f0d3-4b74-9daa-13f570ee5a91" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {
+        "orderid": 1243,
+        "userid": 1302,
+        "addressid": 201,
+        "discountid": 1,
+        "created": 1594166394000,
+        "modified": null,
+        "status": "Shipment Completed",
+        "amount": 1000.0
+    }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetorderUid-craft-online-shopping-Flow" doc:id="9b4cdb64-e5b2-47e1-b9bb-7d7917ea6d5a" >
+		<http:listener doc:name="Listener" doc:id="15536134-439c-4049-bb46-18a870f3fff9" config-ref="HTTP_Listener_config" path="/order/{uid}"/>
+		<ee:transform doc:name="Transform Message" doc:id="7a0dce32-d9b6-4cbe-9d3a-e56fc8988090" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {
+        "orderid": 1243,
+        "userid": 1302,
+        "addressid": 201,
+        "discountid": 1,
+        "created": 1594166394000,
+        "modified": null,
+        "status": "Shipment Completed",
+        "amount": 1000.0
+    }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="PostOrders-craft-online-shopping-Flow" doc:id="6315e7e7-e7b2-4710-8010-02fc1caa90a1" >
+		<http:listener doc:name="Listener" doc:id="7b16c325-20b2-4f84-8e3e-52843708e7a6" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="190683ec-b388-43ee-8077-26231bd108ce" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "orderid": 1386,
+    "userid": 1304,
+    "addressid": 201,
+    "discountid": 1,
+    "created": 1597276201892,
+    "modified": null,
+    "status": "Accepted",
+    "amount": 1000.0
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetCatagories-craft-online-shopping-Flow" doc:id="275b06be-0c5e-48f5-88ee-c060fe1d7978" >
+		<http:listener doc:name="Listener" doc:id="2a2fe268-4035-4b85-9904-f6bdbec1950d" config-ref="HTTP_Listener_config" path="/catagories" />
+		<ee:transform doc:name="Transform Message" doc:id="a2a7bc0d-896b-422b-a735-a17b2c3a15c0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "categoryid": 10,
+    "name": "labtop"
+  },
+  {
+    "categoryid": 11,
+    "name": "laptops"
+  },
+  {
+    "categoryid": 12,
+    "name": "home electronics"
+  }]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="GetCatagoryid-craft-online-shopping-Flow" doc:id="32ad1f6a-2330-456f-965b-a8cbd0364fcd" >
+		<http:listener doc:name="Copy_of_Listener" doc:id="28656052-c4f6-4ae8-a67f-621a2caa5003" config-ref="HTTP_Listener_config" path="/category/{id}" />
+		<ee:transform doc:name="Copy_of_Transform Message" doc:id="3360fcf3-0a83-4be7-9f58-3204f9d6579f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "categoryid": 10,
+    "name": "labtop"
+  }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
