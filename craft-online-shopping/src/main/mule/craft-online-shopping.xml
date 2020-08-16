@@ -167,16 +167,11 @@ output application/json
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
 ---
- {
-        "orderid": 1243,
-        "userid": 1302,
-        "addressid": 201,
-        "discountid": 1,
-        "created": 1594166394000,
-        "modified": null,
-        "status": "Shipment Completed",
-        "amount": 1000.0
-    }]]></ee:set-payload>
+   {
+                    "orderid": 2,
+                    "status": "ajhjsj",
+                    "userid": 3
+                  }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
@@ -190,12 +185,9 @@ output application/json
 {
     "orderid": 1386,
     "userid": 1304,
-    "addressid": 201,
-    "discountid": 1,
-    "created": 1597276201892,
-    "modified": null,
+    
     "status": "Accepted",
-    "amount": 1000.0
+    
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
@@ -225,7 +217,7 @@ output application/json
 	</flow>
 	<flow name="GetCatagoryid-craft-online-shopping-Flow" doc:id="32ad1f6a-2330-456f-965b-a8cbd0364fcd" >
 		<http:listener doc:name="Copy_of_Listener" doc:id="28656052-c4f6-4ae8-a67f-621a2caa5003" config-ref="HTTP_Listener_config" path="/category/{id}" />
-		<ee:transform doc:name="Copy_of_Transform Message" doc:id="3360fcf3-0a83-4be7-9f58-3204f9d6579f" >
+		<ee:transform doc:name="Transform Message" doc:id="3360fcf3-0a83-4be7-9f58-3204f9d6579f" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
