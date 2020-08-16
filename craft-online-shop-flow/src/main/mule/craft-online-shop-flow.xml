@@ -5,12 +5,12 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6cf74335-79d9-4568-a168-a5545d215556" >
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="3e64223d-4d40-4cd6-9013-cb3de597cd51" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<flow name="GetUsers-shopping-Flow" doc:id="d50b918a-fa08-4415-9917-ef90d90d14d9" >
-		<http:listener doc:name="Listener" doc:id="1922618a-f697-4f32-a8a6-f9fde926875d" config-ref="HTTP_Listener_config" path="/users"/>
-		<ee:transform doc:name="Transform Message" doc:id="ab7e0d53-e605-422b-84af-3aa599d1d44e" >
+	<flow name="GetUsers-shopping-Flow" doc:id="cf47ef3b-2f75-4149-987d-15ca17316a5f" >
+		<http:listener doc:name="Listener" doc:id="d8c68a80-b0cc-44cd-aabc-9ae655b59ae5" config-ref="HTTP_Listener_config" path="/users"/>
+		<ee:transform doc:name="Transform Message" doc:id="f51a1405-fe65-4d4d-9f02-7edfd871ac28" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -36,9 +36,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="Getuserbyid-craft-online-shopping-Flow" doc:id="863f1b9f-9cde-4eb0-b160-931ba224e68b" >
-		<http:listener doc:name="Listener" doc:id="020a7c4d-0c63-4440-aca1-aec0adad9886" config-ref="HTTP_Listener_config" path="/user/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="75cc208b-84ba-4161-991f-cb1fcec96769" >
+	<flow name="Getuserbyid-craft-online-shopping-Flow" doc:id="d7976d88-9c40-4819-84f4-770d0e7b0a7e" >
+		<http:listener doc:name="Listener" doc:id="79082e70-1cd9-418e-b833-800602bb6eb8" config-ref="HTTP_Listener_config" path="/user/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="e5d4b125-a9cf-4750-be65-c87031fadfcf" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -55,9 +55,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="PostUser-craft-online-shopping-Flow" doc:id="60e3ce37-5c39-4270-aa9b-be7961325689" >
-		<http:listener doc:name="Listener" doc:id="079c8c24-dceb-4bc8-b820-d764a9ace0bd" config-ref="HTTP_Listener_config" path="/user"/>
-		<ee:transform doc:name="Transform Message" doc:id="53aec6ad-77a0-45be-aae1-f62098f8e8b5" >
+	<flow name="PostUser-craft-online-shopping-Flow" doc:id="3df17099-a9ed-4d64-b6c7-82cfeb2c9816" >
+		<http:listener doc:name="Listener" doc:id="4d29d7c6-ed20-41aa-bb82-f63162675eb8" config-ref="HTTP_Listener_config" path="/user"/>
+		<ee:transform doc:name="Transform Message" doc:id="f4d36fe4-5c30-4a12-8aab-630aeda185dd" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -68,9 +68,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetProducts-online-shopping-Flow" doc:id="74a40053-85d5-4cdd-8452-a53ffb932f42" >
-		<http:listener doc:name="Listener" doc:id="29023e9d-7ade-4c99-bab1-5957be7b0058" config-ref="HTTP_Listener_config" path="/products"/>
-		<ee:transform doc:name="Transform Message" doc:id="e9d87608-343f-4c2f-ab79-5bb0b81ee699" >
+	<flow name="GetProducts-online-shopping-Flow" doc:id="3b64b95a-cb4e-4849-be8d-720c300d5cb3" >
+		<http:listener doc:name="Listener" doc:id="8c2ff33b-1a2a-4803-9f9f-7e13e366fe0a" config-ref="HTTP_Listener_config" path="/products"/>
+		<ee:transform doc:name="Transform Message" doc:id="7d0b26f1-536a-4177-8fb8-9caad3b49993" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/java
@@ -97,9 +97,9 @@ output application/java
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetProductbyid-online-shopping-Flow" doc:id="8dc96def-033b-4345-8f73-50a02e7d929d" >
-		<http:listener doc:name="Listener" doc:id="2f754a4e-ee27-43dc-9c1c-abffef2edfc6" config-ref="HTTP_Listener_config" path="/products/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="a2d0a26b-6fd1-44eb-963d-ab7b7c0cd8a7" >
+	<flow name="GetProductbyid-online-shopping-Flow" doc:id="fc7d226a-4b5d-420f-bbaf-adbce95e7417" >
+		<http:listener doc:name="Listener" doc:id="5652806c-0753-46af-ae94-342cc3af32fa" config-ref="HTTP_Listener_config" path="/products/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="cf2794ff-7466-4c87-9ad1-3633e04d516e" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/java
@@ -109,9 +109,9 @@ output application/java
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetOrders-craft-online-shopping-Flow" doc:id="2e82cb4c-8d67-43fa-ba13-73656ab1674e" >
-		<http:listener doc:name="Listener" doc:id="4ab9c00f-b0ab-4374-984e-8c1f6f8b6be0" config-ref="HTTP_Listener_config" path="/orders"/>
-		<ee:transform doc:name="Transform Message" doc:id="e276f38b-6255-4ce8-a14b-c3f1f1c9ed54" >
+	<flow name="GetOrders-craft-online-shopping-Flow" doc:id="d572fd0d-0bdd-4390-8ccc-70e048dca3af" >
+		<http:listener doc:name="Listener" doc:id="14fe5b1d-9ad6-4ecc-a3fa-7a653c165737" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="cf882bae-4d66-4bdc-a9b8-300bda5a8eee" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -140,9 +140,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="Getorderid-craft-online-shopping-Flow" doc:id="8153c3fd-b9cc-4632-bc1d-fe459e77c65c" >
-		<http:listener doc:name="Listener" doc:id="93d82893-7508-4cc2-ad15-1a3c23c658eb" config-ref="HTTP_Listener_config" path="/order/{id}"/>
-		<ee:transform doc:name="Transform Message" doc:id="8284029d-f0d3-4b74-9daa-13f570ee5a91" >
+	<flow name="Getorderid-craft-online-shopping-Flow" doc:id="0cb1cacc-e14e-4921-851e-6d5be7116919" >
+		<http:listener doc:name="Listener" doc:id="f078a925-7eac-4873-8f85-03e0079bce20" config-ref="HTTP_Listener_config" path="/order/{id}"/>
+		<ee:transform doc:name="Transform Message" doc:id="0ea9626b-fc01-47fd-9334-afdf289c9f58" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -160,9 +160,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetorderUid-craft-online-shopping-Flow" doc:id="9b4cdb64-e5b2-47e1-b9bb-7d7917ea6d5a" >
-		<http:listener doc:name="Listener" doc:id="15536134-439c-4049-bb46-18a870f3fff9" config-ref="HTTP_Listener_config" path="/order/{uid}"/>
-		<ee:transform doc:name="Transform Message" doc:id="7a0dce32-d9b6-4cbe-9d3a-e56fc8988090" >
+	<flow name="GetorderUid-craft-online-shopping-Flow" doc:id="fefcfde0-9e98-4cfb-86a3-81886db5d217" >
+		<http:listener doc:name="Listener" doc:id="2f9cd97a-1999-402d-b7d5-6842c4781646" config-ref="HTTP_Listener_config" path="/order/{uid}"/>
+		<ee:transform doc:name="Transform Message" doc:id="aa9bf8b7-bc45-4d1f-8182-8e73fc65edb8" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -175,9 +175,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="PostOrders-craft-online-shopping-Flow" doc:id="6315e7e7-e7b2-4710-8010-02fc1caa90a1" >
-		<http:listener doc:name="Listener" doc:id="7b16c325-20b2-4f84-8e3e-52843708e7a6" config-ref="HTTP_Listener_config" path="/orders"/>
-		<ee:transform doc:name="Transform Message" doc:id="190683ec-b388-43ee-8077-26231bd108ce" >
+	<flow name="PostOrders-craft-online-shopping-Flow" doc:id="61b6d822-096e-4d34-a4eb-2e1531ba2577" >
+		<http:listener doc:name="Listener" doc:id="a6abc184-afcf-4f73-bdad-f602611304e0" config-ref="HTTP_Listener_config" path="/orders"/>
+		<ee:transform doc:name="Transform Message" doc:id="6269bf28-586b-4db3-9fe9-f39e7d9a54f8" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -192,9 +192,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetCatagories-craft-online-shopping-Flow" doc:id="275b06be-0c5e-48f5-88ee-c060fe1d7978" >
-		<http:listener doc:name="Listener" doc:id="2a2fe268-4035-4b85-9904-f6bdbec1950d" config-ref="HTTP_Listener_config" path="/catagories" />
-		<ee:transform doc:name="Transform Message" doc:id="a2a7bc0d-896b-422b-a735-a17b2c3a15c0" >
+	<flow name="GetCatagories-craft-online-shopping-Flow" doc:id="057385b1-faeb-4270-a096-94cbb50464c1" >
+		<http:listener doc:name="Listener" doc:id="26a0832d-ed21-494d-adbc-414bdb57fc72" config-ref="HTTP_Listener_config" path="/catagories" />
+		<ee:transform doc:name="Transform Message" doc:id="c1a1b9c8-bf0e-4edd-93e7-d0e90d8b43e2" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -215,9 +215,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="GetCatagoryid-craft-online-shopping-Flow" doc:id="32ad1f6a-2330-456f-965b-a8cbd0364fcd" >
-		<http:listener doc:name="Copy_of_Listener" doc:id="28656052-c4f6-4ae8-a67f-621a2caa5003" config-ref="HTTP_Listener_config" path="/category/{id}" />
-		<ee:transform doc:name="Transform Message" doc:id="3360fcf3-0a83-4be7-9f58-3204f9d6579f" >
+	<flow name="GetCatagoryid-craft-online-shopping-Flow" doc:id="19be4bae-70f7-4430-9f09-e0bf93e34f24" >
+		<http:listener doc:name="Copy_of_Listener" doc:id="450f85ac-f0f2-45b0-8367-e30138ab7e22" config-ref="HTTP_Listener_config" path="/category/{id}" />
+		<ee:transform doc:name="Transform Message" doc:id="6379c6f0-2b84-4e4a-9514-a8af54a24f8e" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
