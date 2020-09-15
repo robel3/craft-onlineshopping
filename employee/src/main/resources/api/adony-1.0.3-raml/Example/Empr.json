@@ -1,0 +1,43 @@
+[
+   {
+              "FirstName": "Shallom",
+              "LastName" : "Aregahegn",
+              "ID":  2655,
+              "Age": 30,
+              "Address": "3903 kellybrook drive concord,nc,28025",
+              "Salery": 5400
+             },
+              {
+              "FirstName": "dagmawi",
+              "LastName" : "mesfin",
+              "ID":  2713,
+              "Age": 36,
+              "Address": "6712 boolly road",
+              "Salery": 3243
+             },
+              {
+              "FirstName": "gutu",
+              "LastName" : "gebremeskel",
+              "ID":  2858,
+              "Age": 32,
+              "Address": "3565 kellybrook road ",
+              "Salery": 5401
+             },
+              {
+              "FirstName": "gerard",
+              "LastName" : "jek",
+              "ID":  2533,
+              "Age": 49,
+              "Address": "3903 monroe road",
+              "Salery": 5431
+             },
+              {
+              "FirstName": "selam",
+              "LastName" : "Mekonenn",
+              "ID":  2695,
+              "Age": 22,
+              "Address": "4521 kellybrook drive",
+              "Salery": 5100
+             }
+             ]
+  

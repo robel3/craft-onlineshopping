@@ -1,0 +1,62 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/38a4f364-fe2e-413e-b184-2fbfbbd35de5/ # 
+title: adony
+version: 1.0
+traits:
+ response message: !include responses/emp.raml
+/employee:
+  get:
+    description:
+    responses:
+        200:
+         body:
+          application/json:
+            example: !include Example/Empr.json
+    is:
+      - response message:
+
+                 
+  
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+               {
+            "message":"data is created"
+
+          }
+  /{id}:         
+    delete:
+     responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+            "message":"data is deleted"
+          }
+    is:
+      - response message: 
+    put:
+     description: 
+     responses:
+       200:
+        body:
+            application/json:
+              example: 
+               {
+                "messge ": "edited"
+              }
+     is:
+      - response message:
+
+  
+              
+
+         
+  
+               
+             
+       
