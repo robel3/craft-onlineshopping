@@ -1,0 +1,5 @@
+productid,Catagoryid,name,video_url,price
+1,ABC - abc - 0001,Tomato,A,20
+2,ABC - abc - 0002,Onion,b,30
+3,ABC - abc - 0003,Potato,c,40
+4,ABC - abc - 0004,Bread,A,50
